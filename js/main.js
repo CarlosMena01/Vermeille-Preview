@@ -150,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
     visuelles: 'Identités visuelles',
     print: 'Print et Édition',
     illustrations: 'Illustrations',
-    photographie: 'Photographie'
+    photographie: 'Photographie',
+    video: 'Motion et Vidéo'
   };
 
   /* Trie les projets selon PROJECT_ORDER (js/projects-data.js).
@@ -178,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.innerHTML = `
         <div class="card__media">
           <span class="card__tag">${p.categoryLabel}</span>
+          ${p.gallery.some(g => g.video) ? '<span class="card__play" aria-hidden="true"></span>' : ''}
           <img src="${p.cover}" alt="${p.title}" loading="lazy">
           <div class="card__overlay">
             <span class="card__overlay-text">Voir le projet →</span>
@@ -248,6 +250,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------- Carousel (galerie du projet) ---------------- */
   let carousel = null;
 
+  /* Un élément de galerie est soit un chemin d'image, soit une vidéo :
+     { video: "assets/video/x.mp4", poster: "assets/img/x-poster.jpg" } */
+  const renderSlide = (item, project, i) => {
+    if (typeof item === 'object' && item.video) {
+      return `<video src="${item.video}"${item.poster ? ` poster="${item.poster}"` : ''} controls playsinline preload="none" aria-label="${project.title} — vidéo ${i + 1}"></video>`;
+    }
+    return `<img src="${item}" alt="${project.title} — image ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">`;
+  };
+
+  const pauseVideos = () => {
+    modalBody.querySelectorAll('video').forEach(v => v.pause());
+  };
+
   const buildCarousel = (project) => {
     const slides = project.gallery;
     const single = slides.length <= 1;
@@ -256,9 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="carousel${single ? ' carousel--single' : ''}" id="carousel">
         <div class="carousel__viewport">
           <div class="carousel__track" id="carouselTrack">
-            ${slides.map((src, i) => `
+            ${slides.map((item, i) => `
               <div class="carousel__slide">
-                <img src="${src}" alt="${project.title} — image ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">
+                ${renderSlide(item, project, i)}
               </div>
             `).join('')}
           </div>
@@ -285,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const goTo = (i) => {
       index = (i + total) % total;
+      pauseVideos();
       track.style.transform = `translateX(-${index * 100}%)`;
       dots.forEach((d, n) => d.classList.toggle('is-active', n === index));
       if (counter) counter.textContent = `${index + 1} / ${total}`;
@@ -332,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeModal() {
+    pauseVideos();
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
@@ -344,7 +361,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('is-open')) return;
     if (e.key === 'Escape') closeModal();
-    if (!carousel) return;
+    // les flèches servent à avancer dans la vidéo quand elle a le focus
+    if (!carousel || e.target.tagName === 'VIDEO') return;
     if (e.key === 'ArrowLeft') carousel.prev();
     if (e.key === 'ArrowRight') carousel.next();
   });

@@ -16,25 +16,36 @@ const PROJECT_ORDER = [
   "brochure-annuelle",           // Brochure Annuelle — Richou Voyages
   "festival-v1",                 // Festival du cinéma espagnol — version 1
   "vagabond",                    // Vagabond — application de mobilité
+  "jcg",                         // JCG Créations — refonte d'identité
   "illustration-affiches-pop",    // Affiches pop
   "festival-v2",                 // Festival du cinéma espagnol — version 2
+  "motion-rse",                  // Motion design — RSE
   "illustrations-voyage",        // Illustrations de voyage — Sardaigne & Turquie
   "cohezia",                     // Refonte des entités — Richou Voyages
+  "brochure-thematique",         // Brochure thématique — Richou Voyages
   "orelsan",                     // Civilisation — Orelsan
   "illustration-architecture",   // Muralla Roja
+  "haricots",                    // Début des haricots — restaurant végan
   "brochure-inspiration",        // Brochure Inspiration — Richou Voyages
   "photos-personnelles",         // Photos personnelles
+  "video-alternance",            // Vidéo Richou alternance
   "cardgame",                    // Traits de caractère — jeu de cartes
+  "voyage-amerique",             // Logo voyage Amérique Latine
   "illustration-route",          // Sur la route — Vernet-les-Bains & Lohéac
   "absolut",                     // Absolut Mythologik
+  "split",                       // Dépliant Split
   "illustration-venise",         // Venise
+  "animation-valise",            // Animation Richou Voyages — bagage cabine
   "pochette-cadeau",             // Pochette Cadeau — Richou Voyages
   "illustration-lisbonne",       // Lisbonne
+  "brochure-groupe",             // Brochure groupe — Richou Voyages
   "serigraphie-artisanale",      // Sérigraphie artisanale — tote bag
   "photos-studiom",              // Photo Studio M
+  "video-voyage",                // Vidéo Richou voyage
   "illustration-fenetre",        // Vue sur Santorin
   "serigraphie-plat",            // Sérigraphie à plat
   "illustration-plage",          // Bord de mer
+  "flyer-bons-plans",            // Flyer bon plan — Richou Voyages
   "pictogrammes",                // Pictogrammes voyage
 ];
 
@@ -146,7 +157,8 @@ const PROJECTS = [
       "assets/img/cohezia-detail-7.jpg",
       "assets/img/cohezia-detail-8.jpg",
       "assets/img/cohezia-detail-9.jpg",
-      "assets/img/cohezia-detail-10.jpg"
+      "assets/img/cohezia-detail-10.jpg",
+      { video: "assets/video/cohezia-animation-logos.mp4", poster: "assets/img/cohezia-animation-logos-poster.jpg" }
     ],
     description: "J'ai eu pour projet de concevoir les identités visuelles et la charte graphique de chacune des entités, en m'adaptant à l'identité existante de Richou Voyages, afin que l'on comprenne que ces marques font partie de l'entreprise. Ensuite, j'ai dû décliner différents supports en fonction des marques.",
     tags: ["Charte graphique", "Papeterie", "Déclinaisons de marque"]
@@ -375,10 +387,191 @@ const PROJECTS = [
     cover: "assets/img/illustration-aperol.jpg",
     gallery: [
       "assets/img/illustration-aperol.jpg",
-      "assets/img/illustration-bottes.jpg"
+      "assets/img/illustration-bottes.jpg",
+      "assets/img/illustration-disco.jpg"
     ],
-    description: "Réalisation d'affiches décoratives pensées pour une chambre : un spritz sur damier ondulé et une paire de bottes santiag fleuries. Palette saturée de roses et d'oranges vifs pour une harmonie dynamique.",
+    description: "Réalisation d'affiches décoratives pensées pour une chambre : une boule disco, un spritz sur damier ondulé et une paire de bottes santiag fleuries. Palette saturée de roses et d'oranges vifs pour une harmonie dynamique.",
     tags: ["Illustration vectorielle", "Affiche", "Décoration"]
+  },
+  {
+    id: "jcg",
+    title: "JCG Créations",
+    subtitle: "Refonte de l’identitée visuelle",
+    category: "visuelles",
+    categoryLabel: "Identités visuelles",
+    cover: "assets/img/jcg-cover.jpg",
+    gallery: [
+      "assets/img/jcg-cover.jpg",
+      "assets/img/jcg-detail-1.jpg",
+      "assets/img/jcg-detail-2.jpg",
+      "assets/img/jcg-detail-3.jpg",
+      "assets/img/jcg-detail-4.jpg",
+      "assets/img/jcg-detail-5.jpg",
+      "assets/img/jcg-detail-6.jpg",
+      "assets/img/jcg-detail-7.jpg",
+      "assets/img/jcg-detail-8.jpg",
+      "assets/img/jcg-detail-9.jpg"
+    ],
+    description: "Refonte de la charte graphique de l’entreprise JCG Créations, une entreprise de fabricant de van aménagés. Le but étant de revoir complètement le logo et le sytème graphique de l’entreprise pour qu’il soit plus moderne et qu’il représente mieux les valeurs de l’entreprise, à savoir le côté haut de gamme des produits, l’idée du road trip et de la liberté mais aussi l’autonomie. J’ai donc retravaillé le logo mais aussi les couleurs, les typographies, crée un motif et décliner plusieurs supports de communication avec cette nouvelle charte graphique (comptoir, panneau dibond, oriflamme, carte de visite, signature mail…)",
+    tags: ["Refonte de logo", "Charte graphique", "Motif", "Supports"]
+  },
+  {
+    id: "haricots",
+    title: "Début des haricots",
+    subtitle: "Identité visuelle — restaurant végan",
+    category: "visuelles",
+    categoryLabel: "Identités visuelles",
+    cover: "assets/img/haricots-cover.jpg",
+    gallery: [
+      "assets/img/haricots-cover.jpg",
+      "assets/img/haricots-detail-1.jpg",
+      "assets/img/haricots-detail-2.jpg",
+      "assets/img/haricots-detail-3.jpg",
+      "assets/img/haricots-detail-4.jpg",
+      "assets/img/haricots-detail-5.jpg",
+      "assets/img/haricots-detail-6.jpg",
+      "assets/img/haricots-detail-7.jpg",
+      "assets/img/haricots-detail-8.jpg",
+      "assets/img/haricots-detail-9.jpg",
+      "assets/img/haricots-detail-10.jpg"
+    ],
+    description: "Création complète de l’identité visuelle d’un restaurant végan. Réalisation du logo puis de sa charte graphique avec pattern, mascotte, choix des couleurs et des typographies… Puis réalisation de différents supports de communication comme un menu ou encore des contenus pour les réseaux sociaux.",
+    tags: ["Logo", "Charte graphique", "Mascotte", "Menu"]
+  },
+  {
+    id: "voyage-amerique",
+    title: "Logo voyage Amérique Latine",
+    subtitle: "Projet personnel — tee-shirts & stickers",
+    category: "visuelles",
+    categoryLabel: "Identités visuelles",
+    cover: "assets/img/voyage-amerique-cover.jpg",
+    gallery: [
+      "assets/img/voyage-amerique-cover.jpg",
+      "assets/img/voyage-amerique-detail-1.jpg",
+      "assets/img/voyage-amerique-detail-2.jpg",
+      "assets/img/voyage-amerique-detail-3.jpg"
+    ],
+    description: "Ce projet est un projet personnel qui m’a tenu à coeur de mettre en place. Je suis partis en voyage pendant trois mois en Amérique latine avec ma soeur et avait donc pour une idée de nous réaliser une identité graphique à décliner ensuite sur des tee-shirts et des tickets à coller sur les différents lieux que l’on allait découvrir.",
+    tags: ["Logo", "Illustration", "Textile", "Stickers"]
+  },
+  {
+    id: "brochure-thematique",
+    title: "Brochure thématique",
+    subtitle: "Richou Voyages",
+    category: "print",
+    categoryLabel: "Print et Édition",
+    cover: "assets/img/brochure-thematique-cover.jpg",
+    gallery: [
+      "assets/img/brochure-thematique-cover.jpg",
+      "assets/img/brochure-thematique-detail-1.jpg",
+      "assets/img/brochure-thematique-detail-2.jpg"
+    ],
+    description: "Réalisation d’une brochure pour présenter les différents voyages thématiques de Richou Voyages, à savoir les carnavals, les marchés de Noel, les nouvel an, les voyages neiges… Mise en page réalisée sur Indesign à l’aide du logiciel Easycatalogue",
+    tags: ["Mise en page", "InDesign", "EasyCatalog"]
+  },
+  {
+    id: "brochure-groupe",
+    title: "Brochure groupe",
+    subtitle: "Richou Voyages",
+    category: "print",
+    categoryLabel: "Print et Édition",
+    cover: "assets/img/brochure-groupe-cover.jpg",
+    gallery: [
+      "assets/img/brochure-groupe-cover.jpg",
+      "assets/img/brochure-groupe-detail-1.jpg"
+    ],
+    description: "Dans le cadre de mon poste chez Richou Voyages, j’ai eu l’occasion de réaliser une petite plaquette pour présenter quelques voyages proposé à faire en groupe de voyage (amis, famille, entreprise…) Plaquette réalisée sur indesign.",
+    tags: ["Plaquette", "Mise en page", "InDesign"]
+  },
+  {
+    id: "split",
+    title: "Dépliant Split",
+    subtitle: "Brochure sur le film Split",
+    category: "print",
+    categoryLabel: "Print et Édition",
+    cover: "assets/img/split-cover.jpg",
+    gallery: [
+      "assets/img/split-cover.jpg",
+      "assets/img/split-detail-1.jpg",
+      "assets/img/split-detail-2.jpg",
+      "assets/img/split-detail-3.jpg",
+      "assets/img/split-detail-4.jpg",
+      "assets/img/split-detail-5.jpg"
+    ],
+    description: "Réalisation d’une brochure sur le film Split avec la contrainte de réaliser plusieurs illustrations et photomontage à l’aide de Photoshop et de réutiliser l’aspect graphique du film tout le long de la brochure. La plaquette contient différent contenu : synopsis, résumé, témoignages, illustrations.",
+    tags: ["Photomontage", "Illustration", "Photoshop", "Mise en page"]
+  },
+  {
+    id: "flyer-bons-plans",
+    title: "Flyer bon plan",
+    subtitle: "Richou Voyages",
+    category: "print",
+    categoryLabel: "Print et Édition",
+    cover: "assets/img/flyer-bons-plans-cover.jpg",
+    gallery: [
+      "assets/img/flyer-bons-plans-cover.jpg",
+      "assets/img/flyer-bons-plans-detail-1.jpg"
+    ],
+    description: "Réalisation d’un flyer pour présenter à nos clients les différents bons plans proposer par Richou voyages et leur donner envie de passer par l’agence plutôt qu’une autre.",
+    tags: ["Flyer", "Mise en page"]
+  },
+  {
+    id: "motion-rse",
+    title: "Motion design",
+    subtitle: "Animation sur la RSE",
+    category: "video",
+    categoryLabel: "Motion et Vidéo",
+    cover: "assets/img/motion-rse-poster.jpg",
+    gallery: [
+      { video: "assets/video/motion-rse.mp4", poster: "assets/img/motion-rse-poster.jpg" }
+    ],
+    description: "Réalisation d’une animation sur le thème de la RSE, le but était de mettre en avant ce principe de Responsabilité Sociétale des Entreprises en le présentant aux entreprises et en y intégrant une voix off et des animations claire et ludiques.",
+    tags: ["Motion design", "Voix off", "Animation"]
+  },
+  {
+    id: "animation-valise",
+    title: "Animation Richou Voyages",
+    subtitle: "Préparer son bagage cabine",
+    category: "video",
+    categoryLabel: "Motion et Vidéo",
+    cover: "assets/img/animation-valise-poster.jpg",
+    gallery: [
+      { video: "assets/video/animation-valise.mp4", poster: "assets/img/animation-valise-poster.jpg" }
+    ],
+    description: "Réalisation d’une animation sur After Effects pour clarifier les différents équipements autorisés dans un bagage lors d’un voyage avec Richou voyages. Cela permet au client de savoir de manière ludique ce qu’ils ont ou non le droit d’emporter.",
+    tags: ["Motion design", "After Effects"]
+  },
+  {
+    id: "video-alternance",
+    title: "Video Richou alternance",
+    subtitle: "Campagnes d’alternance",
+    category: "video",
+    categoryLabel: "Motion et Vidéo",
+    cover: "assets/img/alternance-journee-juliette-poster.jpg",
+    gallery: [
+      { video: "assets/video/alternance-journee-juliette.mp4", poster: "assets/img/alternance-journee-juliette-poster.jpg" },
+      { video: "assets/video/alternance-temoignage-lorine.mp4", poster: "assets/img/alternance-temoignage-lorine-poster.jpg" },
+      { video: "assets/video/alternance-prejuges.mp4", poster: "assets/img/alternance-prejuges-poster.jpg" },
+      { video: "assets/video/alternance-3-avantages.mp4", poster: "assets/img/alternance-3-avantages-poster.jpg" },
+      { video: "assets/video/alternance-richou-recrute.mp4", poster: "assets/img/alternance-richou-recrute-poster.jpg" }
+    ],
+    description: "Réalisation d’une campagne d’alternance chaque nouvelle année durant mon poste chez Richou voyages. Le but était de trouver un nouveau concept chaque année pour donner envie aux futurs alternants de nous rejoindre. Par exemple sous forme de témoignages des alternants, de préjugés vs réalité ou encore « une journée type en alternance chez Richou Voyages » Avec la réalisation d’un logo et d’une animation spéciale pour cette campagne « Richou à besoin de vous » sur le logiciel After Effects « Transmettre » était également la campagne d’alternance d’une autre année que j’ai réalisée.",
+    tags: ["Tournage", "Montage", "After Effects", "Réseaux sociaux"]
+  },
+  {
+    id: "video-voyage",
+    title: "Vidéo Richou voyage",
+    subtitle: "Destinations & témoignages",
+    category: "video",
+    categoryLabel: "Motion et Vidéo",
+    cover: "assets/img/video-voyage-top5-culture-poster.jpg",
+    gallery: [
+      { video: "assets/video/video-voyage-top5-culture.mp4", poster: "assets/img/video-voyage-top5-culture-poster.jpg" },
+      { video: "assets/video/video-voyage-budapest.mp4", poster: "assets/img/video-voyage-budapest-poster.jpg" },
+      { video: "assets/video/video-voyage-temoignage-inde.mp4", poster: "assets/img/video-voyage-temoignage-inde-poster.jpg" }
+    ],
+    description: "Réalisation de différentes vidéos pour présenter les voyages, soit sous la forme d’une vidéo de présentation d’une destination par l’un de nos conseillers voyages soit sous la forme de témoignage client lors de nos voyages ou encore des vidéos rapides qui présentent un Top 5.",
+    tags: ["Tournage", "Montage", "Réseaux sociaux"]
   },
   {
     id: "photos-personnelles",

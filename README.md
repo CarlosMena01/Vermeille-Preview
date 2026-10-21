@@ -4,7 +4,7 @@
 
 ### Portfolio de **Vermeille Pontoire** — graphiste
 
-Sitio web de una sola página: identidades visuales, print, ilustración y fotografía.
+Sitio web de una sola página: identidades visuales, print, ilustración, fotografía y motion/vídeo.
 
 `HTML` · `CSS` · `JavaScript vanilla` · sin dependencias
 
@@ -59,7 +59,8 @@ vermeille-portfolio/
 ├── js/
 │   ├── projects-data.js  # PROJECTS y TIMELINE (contenido editable)
 │   └── main.js           # loader, reveal, filtros, modal, carrusel
-└── assets/img/           # portadas, galerías y logos
+├── assets/img/           # portadas, galerías y logos
+└── assets/video/         # vídeos (H.264, ≤1280 px) — en la galería: { video, poster }
 ```
 
 ## 🚀 Uso
