@@ -138,6 +138,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // toucher une carte (ou un titre de colonne) de la piste estompée bascule sur cette piste
+  parcoursEl.addEventListener('click', (e) => {
+    const target = e.target.closest('.timeline-item__inner, .timeline-head');
+    if (!target) return;
+    const item = target.closest('.timeline-item') || target;
+    const track = ['formation', 'experience'].find(t =>
+      item.classList.contains(`timeline-item--${t}`) || item.classList.contains(`timeline-head--${t}`));
+    if (!track || parcoursEl.classList.contains(`is-focus-${track}`)) return;
+    const tab = document.querySelector(`.timeline-tab[data-track="${track}"]`);
+    if (tab) tab.click();
+  });
+
   renderTimeline();
   const activeTab = document.querySelector('.timeline-tab.is-active');
   setTimelineFocus(activeTab ? activeTab.dataset.track : 'formation');

@@ -727,6 +727,12 @@ ul{ margin:0; padding:0; list-style:none; }
 .parcours.is-focus-experience .timeline-item--formation .timeline-item__dot{
   transform: scale(.72);
 }
+.parcours.is-focus-formation .timeline-item--experience .timeline-item__inner,
+.parcours.is-focus-formation .timeline-head--experience,
+.parcours.is-focus-experience .timeline-item--formation .timeline-item__inner,
+.parcours.is-focus-experience .timeline-head--formation{
+  cursor: pointer;
+}
 
 /* ---------------------------------------------------------
    Portfolio / Masonry
