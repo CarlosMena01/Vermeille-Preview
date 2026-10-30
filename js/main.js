@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const masonryEl = document.getElementById('masonry');
   const filterBtns = document.querySelectorAll('.filter-btn');
 
-  const categoryTagColor = {
+  const CATEGORY_LABEL = {
     visuelles: 'Identités visuelles',
     print: 'Print et Édition',
     illustrations: 'Illustrations',
@@ -181,17 +181,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentFilter = 'all';
   let currentCols = 0;
 
+  /* Un projet apparaît sous sa `category` et, si besoin, sous les filtres
+     supplémentaires listés dans `extraCategories` ; il porte une pastille
+     par catégorie, la sienne en premier. */
+  const filtersOf = (p) => [p.category, ...(p.extraCategories || [])];
+  const labelsOf = (p) => [p.categoryLabel, ...(p.extraCategories || []).map(c => CATEGORY_LABEL[c])];
+  const tags = (p, cls) => labelsOf(p).map(l => `<span class="${cls}">${l}</span>`).join('');
+
   /* Les cartes sont créées une seule fois puis simplement déplacées entre les
      colonnes : on conserve ainsi leurs écouteurs et l'état des animations. */
   const cardEls = orderedProjects().map(p => {
     const el = document.createElement('article');
     el.className = 'card';
-    el.dataset.category = p.category;
+    el.dataset.categories = filtersOf(p).join(' ');
     el.dataset.id = p.id;
+    const hasVideo = p.gallery.some(g => g.video);
     el.innerHTML = `
         <div class="card__media">
-          <span class="card__tag">${p.categoryLabel}</span>
-          ${p.gallery.some(g => g.video) ? '<span class="card__play" aria-hidden="true"></span>' : ''}
+          <div class="card__tags${hasVideo ? ' card__tags--has-play' : ''}">${tags(p, 'card__tag')}</div>
+          ${hasVideo ? '<span class="card__play" aria-hidden="true"></span>' : ''}
           <img src="${p.cover}" alt="${p.title}" loading="lazy">
           <div class="card__overlay">
             <span class="card__overlay-text">Voir le projet →</span>
@@ -221,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const layoutMasonry = () => {
     const cols = columnCount();
     const visible = cardEls.filter(el =>
-      currentFilter === 'all' || el.dataset.category === currentFilter);
+      currentFilter === 'all' || el.dataset.categories.split(' ').includes(currentFilter));
 
     masonryEl.textContent = '';
     const colEls = Array.from({ length: cols }, () => {
@@ -341,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalBody.innerHTML = `
       ${buildCarousel(project)}
-      <span class="modal__tag">${project.categoryLabel}</span>
+      ${tags(project, 'modal__tag')}
       <h2 class="modal__title" id="modalTitle">${project.title}</h2>
       <p class="modal__subtitle">${project.subtitle}</p>
       <p class="modal__desc">${project.description}</p>

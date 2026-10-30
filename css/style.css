@@ -411,10 +411,19 @@ ul{ margin:0; padding:0; list-style:none; }
   font-family: var(--font-display);
   color: var( --coral);
   font-weight: 500;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
   text-transform: uppercase;
-  font-size: .82rem;
+  font-size: .74rem;
+  line-height: 1.75;
   margin: 0 0 18px;
+}
+/* Toujours sur deux lignes : l'intitulé sur la première, la disponibilité et
+   la ville sur la seconde. Chaque mention reste d'un seul tenant. */
+.hero__kicker > span{ white-space: nowrap; }
+.hero__kicker > span:first-child{ display: block; }
+.hero__kicker > span:last-child::before{
+  content: "·";
+  margin-right: .3em;
 }
 .hero__title{
   font-family: var(--font-display);
@@ -426,7 +435,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .hero__lead{
   font-size: 1.08rem;
   line-height: 1.7;
-  max-width: 520px;
+  max-width: 540px;
   margin: 0 0 16px;
   color: var(--ink);
 }
@@ -836,9 +845,20 @@ ul{ margin:0; padding:0; list-style:none; }
   align-items: center;
   gap: 8px;
 }
-.card__tag{
+/* un projet peut relever de plusieurs catégories : les pastilles se suivent
+   et passent à la ligne si la largeur de la carte ne suffit pas. */
+.card__tags{
   position: absolute;
   top: 14px; left: 14px;
+  right: 14px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+/* place réservée à la pastille « lecture » des projets vidéo */
+.card__tags--has-play{ right: 56px; }
+.card__tag{
   background: rgba(251,243,234,.92);
   color: var( --coral);
   font-family: var(--font-display);
@@ -848,7 +868,6 @@ ul{ margin:0; padding:0; list-style:none; }
   letter-spacing: .05em;
   padding: 6px 12px;
   border-radius: 999px;
-  z-index: 2;
 }
 /* pastille « lecture » sur les projets qui contiennent une vidéo */
 .card__play{
@@ -1310,6 +1329,7 @@ ul{ margin:0; padding:0; list-style:none; }
   border-radius: 999px;
   margin-bottom: 16px;
 }
+.modal__tag + .modal__tag{ margin-left: 8px; }
 .modal__title{
   font-family: var(--font-subtitle-v2);
   font-weight: 700;

@@ -11,40 +11,41 @@
    • un id qui n'existe pas ici est simplement ignoré
    ========================================================================= */
 const PROJECT_ORDER = [
-  "vermeille",                   // Vermeille — identité de marque personnelle
-  "gobelet",                     // Gobelet La Piautre
-  "brochure-annuelle",           // Brochure Annuelle — Richou Voyages
-  "festival-v1",                 // Festival du cinéma espagnol — version 1
-  "vagabond",                    // Vagabond — application de mobilité
-  "jcg",                         // JCG Créations — refonte d'identité
-  "illustration-affiches-pop",    // Affiches pop
-  "festival-v2",                 // Festival du cinéma espagnol — version 2
-  "motion-rse",                  // Motion design — RSE
+  "haricots",                    //  1 · Début des haricots — restaurant végan
+  "vermeille",                   //  2 · Vermeille — identité de marque personnelle
+  "gobelet",                     //  3 · Gobelet La Piautre
+  "brochure-annuelle",           //  4 · Brochure Annuelle — Richou Voyages
+  "jcg",                         //  5 · JCG Créations — refonte d'identité
+  "motion-rse",                  //  6 · Motion design — RSE
+  "festival",                    //  7 · Festival du cinéma espagnol — versions 1 et 2
+  "illustration-affiches-pop",   //  8 · Affiches pop
+  "cohezia",                     //  9 · Refonte des entités — Richou Voyages
+  "brochure-thematique",         // 10 · Brochure thématique — Richou Voyages
+  "orelsan",                     // 11 · Civilisation — Orelsan
+  "illustration-lisbonne",       // 12 · Lisbonne
+  "illustration-fenetre",        // 12 · Vue sur Santorin
+  "illustration-plage",          // 12 · Bord de mer
+  "video-alternance",            // 13 · Vidéo Richou alternance
+  "vagabond",                    // 14 · Vagabond — application de mobilité
+  "absolut",                     // 15 · Absolut Mythologik
+
+  /* — le reste du portfolio, dans l'ordre précédent — */
   "illustrations-voyage",        // Illustrations de voyage — Sardaigne & Turquie
-  "cohezia",                     // Refonte des entités — Richou Voyages
-  "brochure-thematique",         // Brochure thématique — Richou Voyages
-  "orelsan",                     // Civilisation — Orelsan
   "illustration-architecture",   // Muralla Roja
-  "haricots",                    // Début des haricots — restaurant végan
   "brochure-inspiration",        // Brochure Inspiration — Richou Voyages
   "photos-personnelles",         // Photos personnelles
-  "video-alternance",            // Vidéo Richou alternance
   "cardgame",                    // Traits de caractère — jeu de cartes
   "voyage-amerique",             // Logo voyage Amérique Latine
   "illustration-route",          // Sur la route — Vernet-les-Bains & Lohéac
-  "absolut",                     // Absolut Mythologik
   "split",                       // Dépliant Split
   "illustration-venise",         // Venise
   "animation-valise",            // Animation Richou Voyages — bagage cabine
   "pochette-cadeau",             // Pochette Cadeau — Richou Voyages
-  "illustration-lisbonne",       // Lisbonne
   "brochure-groupe",             // Brochure groupe — Richou Voyages
   "serigraphie-artisanale",      // Sérigraphie artisanale — tote bag
   "photos-studiom",              // Photo Studio M
-  "video-voyage",                // Vidéo Richou voyage
-  "illustration-fenetre",        // Vue sur Santorin
+  "video-voyage",                // Vidéo Richou voyages
   "serigraphie-plat",            // Sérigraphie à plat
-  "illustration-plage",          // Bord de mer
   "flyer-bons-plans",            // Flyer bon plan — Richou Voyages
   "pictogrammes",                // Pictogrammes voyage
 ];
@@ -66,9 +67,9 @@ const PROJECTS = [
     tags: ["Logo", "Charte graphique", "Papeterie"]
   },
   {
-    id: "festival-v1",
+    id: "festival",
     title: "Festival du cinéma espagnol",
-    subtitle: "Identité visuelle — version 1",
+    subtitle: "Identité visuelle — versions 1 et 2",
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/festival-v1-cover.jpg",
@@ -76,12 +77,14 @@ const PROJECTS = [
       "assets/img/festival-v1-cover.jpg",
       "assets/img/festival-v1-detail-1.jpg",
       "assets/img/festival-v1-detail-2.jpg",
-      "assets/img/festival-v1-detail-3.jpg"
+      "assets/img/festival-v1-detail-3.jpg",
+      "assets/img/festival-v2-cover.jpg",
+      "assets/img/festival-v2-detail-1.jpg"
     ],
-    description: "Création de l'identité visuelle d'un festival de cinéma espagnol, avec la contrainte de réaliser une typographie pour tout un alphabet, ainsi que différents supports de communication demandés pour l'événement : carton d'invitation, affiche, cartes de visite, page de site internet, logo et quelques goodies. Nous avons fait plusieurs propositions avant de sélectionner la meilleure, que j'ai déclinée ensuite.",
-    tags: ["Typographie sur-mesure", "Affiche", "Goodies"]
+    description: "Création de l'identité visuelle d'un festival de cinéma espagnol, avec la contrainte de réaliser une typographie pour tout un alphabet, ainsi que différents supports de communication demandés pour l'événement : carton d'invitation, affiche, cartes de visite, page de site internet, logo et quelques goodies. J'ai réalisé deux versions aux identités visuelles proches mais reposant sur des concepts distincts. La première a été retenue parmi plusieurs propositions, puis déclinée sur l'ensemble des supports ; la seconde reprend la forme rectangulaire visible dans le viseur d'une caméra au moment du tournage.",
+    tags: ["Typographie sur-mesure", "Logo", "Affiche", "Goodies"]
   },
-    {
+  {
     id: "brochure-annuelle",
     title: "Brochure Annuelle",
     subtitle: "Richou Voyages",
@@ -94,20 +97,6 @@ const PROJECTS = [
     ],
     description: "Richou Voyages sort tous les ans une brochure annuelle avec des voyages pour l'été et l'hiver, destinée à une cible de personnes âgées qui souhaitent voyager avec des séjours entièrement organisés, accompagnés d'un guide et d'accompagnateurs. Mon objectif était de réaliser la couverture de cette brochure, ainsi que la mise en page des pages annexes et des pages produits.",
     tags: ["Couverture", "Mise en page"]
-  },
-  {
-    id: "festival-v2",
-    title: "Festival du cinéma espagnol",
-    subtitle: "Identité visuelle — version 2",
-    category: "visuelles",
-    categoryLabel: "Identités visuelles",
-    cover: "assets/img/festival-v2-cover.jpg",
-    gallery: [
-      "assets/img/festival-v2-cover.jpg",
-      "assets/img/festival-v2-detail-1.jpg"
-    ],
-    description: "Durant ce projet, j'ai réalisé deux versions différentes, avec deux identités visuelles proches mais reposant sur des concepts distincts. Pour cette version, le concept consistait à réutiliser la forme rectangulaire visible dans le viseur d'une caméra au moment du tournage. Création de l'identité visuelle, comprenant le logo et les affiches.",
-    tags: ["Concept", "Logo", "Affiches"]
   },
   {
     id: "pictogrammes",
@@ -277,6 +266,7 @@ const PROJECTS = [
     subtitle: "Illustration imprimée",
     category: "print",
     categoryLabel: "Print et Édition",
+    extraCategories: ["illustrations"],
     cover: "assets/img/serigraphie-plat-cover.jpg",
     gallery: [
       "assets/img/serigraphie-plat-cover.jpg",
@@ -402,8 +392,8 @@ const PROJECTS = [
     cover: "assets/img/jcg-cover.jpg",
     gallery: [
       "assets/img/jcg-cover.jpg",
-      "assets/img/jcg-detail-1.jpg",
       "assets/img/jcg-detail-2.jpg",
+      "assets/img/jcg-detail-1.jpg",
       "assets/img/jcg-detail-3.jpg",
       "assets/img/jcg-detail-4.jpg",
       "assets/img/jcg-detail-5.jpg",
@@ -421,7 +411,7 @@ const PROJECTS = [
     subtitle: "Identité visuelle — restaurant végan",
     category: "visuelles",
     categoryLabel: "Identités visuelles",
-    cover: "assets/img/haricots-cover.jpg",
+    cover: "assets/img/haricots-detail-6.jpg",
     gallery: [
       "assets/img/haricots-cover.jpg",
       "assets/img/haricots-detail-1.jpg",
@@ -547,27 +537,27 @@ const PROJECTS = [
     subtitle: "Campagnes d’alternance",
     category: "video",
     categoryLabel: "Motion et Vidéo",
-    cover: "assets/img/alternance-journee-juliette-poster.jpg",
+    cover: "assets/img/alternance-richou-recrute-poster.jpg",
     gallery: [
+      { video: "assets/video/alternance-richou-recrute.mp4", poster: "assets/img/alternance-richou-recrute-poster.jpg" },
       { video: "assets/video/alternance-journee-juliette.mp4", poster: "assets/img/alternance-journee-juliette-poster.jpg" },
       { video: "assets/video/alternance-temoignage-lorine.mp4", poster: "assets/img/alternance-temoignage-lorine-poster.jpg" },
       { video: "assets/video/alternance-prejuges.mp4", poster: "assets/img/alternance-prejuges-poster.jpg" },
-      { video: "assets/video/alternance-3-avantages.mp4", poster: "assets/img/alternance-3-avantages-poster.jpg" },
-      { video: "assets/video/alternance-richou-recrute.mp4", poster: "assets/img/alternance-richou-recrute-poster.jpg" }
+      { video: "assets/video/alternance-3-avantages.mp4", poster: "assets/img/alternance-3-avantages-poster.jpg" }
     ],
     description: "Réalisation d’une campagne d’alternance chaque nouvelle année durant mon poste chez Richou voyages. Le but était de trouver un nouveau concept chaque année pour donner envie aux futurs alternants de nous rejoindre. Par exemple sous forme de témoignages des alternants, de préjugés vs réalité ou encore « une journée type en alternance chez Richou Voyages » Avec la réalisation d’un logo et d’une animation spéciale pour cette campagne « Richou à besoin de vous » sur le logiciel After Effects « Transmettre » était également la campagne d’alternance d’une autre année que j’ai réalisée.",
     tags: ["Tournage", "Montage", "After Effects", "Réseaux sociaux"]
   },
   {
     id: "video-voyage",
-    title: "Vidéo Richou voyage",
+    title: "Vidéo Richou voyages",
     subtitle: "Destinations & témoignages",
     category: "video",
     categoryLabel: "Motion et Vidéo",
-    cover: "assets/img/video-voyage-top5-culture-poster.jpg",
+    cover: "assets/img/video-voyage-budapest-poster.jpg",
     gallery: [
-      { video: "assets/video/video-voyage-top5-culture.mp4", poster: "assets/img/video-voyage-top5-culture-poster.jpg" },
       { video: "assets/video/video-voyage-budapest.mp4", poster: "assets/img/video-voyage-budapest-poster.jpg" },
+      { video: "assets/video/video-voyage-top5-culture.mp4", poster: "assets/img/video-voyage-top5-culture-poster.jpg" },
       { video: "assets/video/video-voyage-temoignage-inde.mp4", poster: "assets/img/video-voyage-temoignage-inde-poster.jpg" }
     ],
     description: "Réalisation de différentes vidéos pour présenter les voyages, soit sous la forme d’une vidéo de présentation d’une destination par l’un de nos conseillers voyages soit sous la forme de témoignage client lors de nos voyages ou encore des vidéos rapides qui présentent un Top 5.",
