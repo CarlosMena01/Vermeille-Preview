@@ -434,12 +434,15 @@ const PROJECTS = [
     subtitle: "Projet personnel — tee-shirts & stickers",
     category: "visuelles",
     categoryLabel: "Identités visuelles",
-    cover: "assets/img/voyage-amerique-cover.jpg",
+    cover: "assets/img/voyage-amerique-detail-4.jpg",
     gallery: [
+      "assets/img/voyage-amerique-detail-4.jpg",
       "assets/img/voyage-amerique-cover.jpg",
-      "assets/img/voyage-amerique-detail-1.jpg",
       "assets/img/voyage-amerique-detail-2.jpg",
-      "assets/img/voyage-amerique-detail-3.jpg"
+      "assets/img/voyage-amerique-detail-3.jpg",
+      "assets/img/voyage-amerique-detail-1.jpg",
+      "assets/img/voyage-amerique-detail-5.jpg",
+      "assets/img/voyage-amerique-detail-6.jpg"
     ],
     description: "Ce projet est un projet personnel qui m’a tenu à coeur de mettre en place. Je suis partis en voyage pendant trois mois en Amérique latine avec ma soeur et avait donc pour une idée de nous réaliser une identité graphique à décliner ensuite sur des tee-shirts et des tickets à coller sur les différents lieux que l’on allait découvrir.",
     tags: ["Logo", "Illustration", "Textile", "Stickers"]
