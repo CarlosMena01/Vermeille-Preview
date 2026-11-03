@@ -19,19 +19,17 @@ const PROJECT_ORDER = [
   "motion-rse",                  //  6 · Motion design — RSE
   "festival",                    //  7 · Festival du cinéma espagnol — versions 1 et 2
   "illustration-affiches-pop",   //  8 · Affiches pop
-  "cohezia",                     //  9 · Refonte des entités — Richou Voyages
+  "orelsan",                     //  9 · Civilisation — Orelsan
   "brochure-thematique",         // 10 · Brochure thématique — Richou Voyages
-  "orelsan",                     // 11 · Civilisation — Orelsan
-  "illustration-lisbonne",       // 12 · Lisbonne
-  "illustration-fenetre",        // 12 · Vue sur Santorin
-  "illustration-plage",          // 12 · Bord de mer
-  "video-alternance",            // 13 · Vidéo Richou alternance
+  "cohezia",                     // 11 · Refonte des entités — Richou Voyages
+  "video-alternance",            // 12 · Vidéo Richou alternance
+  "illustrations-paysages",      // 13 · Illustrations paysages — Santorin, Lisbonne, bord de mer
   "vagabond",                    // 14 · Vagabond — application de mobilité
   "absolut",                     // 15 · Absolut Mythologik
 
   /* — le reste du portfolio, dans l'ordre précédent — */
   "illustrations-voyage",        // Illustrations de voyage — Sardaigne & Turquie
-  "illustration-architecture",   // Muralla Roja
+  "serigraphie-plat",            // Sérigraphie à plat — Muralla Roja et illustration imprimée
   "brochure-inspiration",        // Brochure Inspiration — Richou Voyages
   "photos-personnelles",         // Photos personnelles
   "cardgame",                    // Traits de caractère — jeu de cartes
@@ -41,15 +39,22 @@ const PROJECT_ORDER = [
   "illustration-venise",         // Venise
   "animation-valise",            // Animation Richou Voyages — bagage cabine
   "pochette-cadeau",             // Pochette Cadeau — Richou Voyages
-  "brochure-groupe",             // Brochure groupe — Richou Voyages
+  // "brochure-groupe",             // Brochure groupe — Richou Voyages
   "serigraphie-artisanale",      // Sérigraphie artisanale — tote bag
   "photos-studiom",              // Photo Studio M
   "video-voyage",                // Vidéo Richou voyages
-  "serigraphie-plat",            // Sérigraphie à plat
   "flyer-bons-plans",            // Flyer bon plan — Richou Voyages
   "pictogrammes",                // Pictogrammes voyage
 ];
 
+/* Les N premiers projets de PROJECT_ORDER sont la sélection mise en avant :
+   ils gardent un placement strict ligne par ligne dans la grille. Les suivants
+   comblent la colonne la plus courte, pour éviter un grand vide tout en bas. */
+const PROJECT_ORDER_FEATURED = 15;
+
+/* `coverRatio` = largeur / hauteur de l’image de couverture. Il réserve la bonne
+   hauteur avant même que l’image soit chargée : la grille ne saute plus au
+   défilement et elle peut être équilibrée dès le premier rendu. */
 const PROJECTS = [
   {
     id: "vermeille",
@@ -58,6 +63,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/brand-vermeille-cover.jpg",
+    coverRatio: 1.333,
     gallery: [
       "assets/img/brand-vermeille-logo.png",
       "assets/img/brand-vermeille-cover.jpg",
@@ -73,6 +79,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/festival-v1-cover.jpg",
+    coverRatio: 1.605,
     gallery: [
       "assets/img/festival-v1-cover.jpg",
       "assets/img/festival-v1-detail-1.jpg",
@@ -91,6 +98,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/brochure-annuelle-cover.jpg",
+    coverRatio: 0.705,
     gallery: [
       "assets/img/brochure-annuelle-cover.jpg",
       "assets/img/brochure-annuelle-detail-1.jpg"
@@ -105,6 +113,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/pictogrammes-detail-1.jpg",
+    coverRatio: 1.0,
     gallery: [
       "assets/img/pictogrammes-detail-1.jpg"
     ],
@@ -118,6 +127,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/vagabond-cover.jpg",
+    coverRatio: 2.028,
     gallery: [
       "assets/img/vagabond-logo.jpg",
       "assets/img/vagabond-cover.jpg",
@@ -135,6 +145,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/cohezia-cover.png",
+    coverRatio: 1.413,
     gallery: [
       "assets/img/cohezia-cover.png",
       "assets/img/cohezia-detail-1.png",
@@ -144,8 +155,6 @@ const PROJECTS = [
       "assets/img/cohezia-detail-5.png",
       "assets/img/cohezia-detail-6.jpg",
       "assets/img/cohezia-detail-7.jpg",
-      "assets/img/cohezia-detail-8.jpg",
-      "assets/img/cohezia-detail-9.jpg",
       "assets/img/cohezia-detail-10.jpg",
       { video: "assets/video/cohezia-animation-logos.mp4", poster: "assets/img/cohezia-animation-logos-poster.jpg" }
     ],
@@ -159,6 +168,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/cardgame-cover.jpg",
+    coverRatio: 1.042,
     gallery: [
       "assets/img/cardgame-cover.jpg",
       "assets/img/cardgame-detail-1.jpg",
@@ -175,6 +185,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/brochure-inspiration-cover.jpg",
+    coverRatio: 1.223,
     gallery: [
       "assets/img/brochure-inspiration-cover.jpg",
       "assets/img/brochure-inspiration-detail-1.jpg",
@@ -190,6 +201,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/pochette-cadeau-cover.jpg",
+    coverRatio: 0.723,
     gallery: [
       "assets/img/pochette-cadeau-cover.jpg",
       "assets/img/pochette-cadeau-detail-1.jpg",
@@ -207,6 +219,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/gobelet-cover.jpg",
+    coverRatio: 0.667,
     gallery: [
       "assets/img/gobelet-cover.jpg",
       "assets/img/gobelet-detail-1.png"
@@ -221,6 +234,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/orelsan-cover.jpg",
+    coverRatio: 1.5,
     gallery: [
       "assets/img/orelsan-cover.jpg",
       "assets/img/orelsan-detail-1.png",
@@ -236,6 +250,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/absolut-cover.jpg",
+    coverRatio: 1.313,
     gallery: [
       "assets/img/absolut-cover.jpg",
       "assets/img/absolut-detail-1.jpg"
@@ -250,6 +265,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/serigraphie-artisanale-cover.jpg",
+    coverRatio: 0.792,
     gallery: [
       "assets/img/serigraphie-artisanale-cover.jpg",
       "assets/img/serigraphie-artisanale-detail-1.jpg",
@@ -263,17 +279,19 @@ const PROJECTS = [
   {
     id: "serigraphie-plat",
     title: "Sérigraphie à plat",
-    subtitle: "Illustration imprimée",
+    subtitle: "Deux illustrations imprimées",
     category: "print",
     categoryLabel: "Print et Édition",
     extraCategories: ["illustrations"],
-    cover: "assets/img/serigraphie-plat-cover.jpg",
+    cover: "assets/img/illustration-architecture.jpg",
+    coverRatio: 0.708,
     gallery: [
+      "assets/img/illustration-architecture.jpg",
       "assets/img/serigraphie-plat-cover.jpg",
       "assets/img/serigraphie-plat-detail-1.jpg"
     ],
-    description: "Réalisation d'une illustration sur un thème choisi sur le logiciel Illustrator afin de l'imprimer dans une imprimerie que nous avons eu la chance de visiter, avec la technique d'impression de la sérigraphie.",
-    tags: ["Sérigraphie", "Illustration"]
+    description: "Réalisation de deux illustrations sur le logiciel Illustrator sur un thème choisi. Impression dans une imprimerie que nous avons eu la chance de visiter, avec la technique de la sérigraphie.",
+    tags: ["Sérigraphie", "Illustration vectorielle", "Affiche"]
   },
   {
     id: "illustrations-voyage",
@@ -282,6 +300,7 @@ const PROJECTS = [
     category: "illustrations",
     categoryLabel: "Illustrations",
     cover: "assets/img/illustration-sardaigne.jpg",
+    coverRatio: 0.562,
     gallery: [
       "assets/img/illustration-sardaigne.jpg",
       "assets/img/illustration-turquie.jpg"
@@ -290,16 +309,19 @@ const PROJECTS = [
     tags: ["Illustration vectorielle", "Campagne publicitaire", "Voyage"]
   },
   {
-    id: "illustration-lisbonne",
-    title: "Lisbonne",
-    subtitle: "Illustration de voyage",
+    id: "illustrations-paysages",
+    title: "Illustrations paysages",
+    subtitle: "Illustrations d'après photo",
     category: "illustrations",
     categoryLabel: "Illustrations",
-    cover: "assets/img/illustration-lisbonne.png",
+    cover: "assets/img/illustration-fenetre.jpg",
+    coverRatio: 0.708,
     gallery: [
-      "assets/img/illustration-lisbonne.png"
+      "assets/img/illustration-fenetre.jpg",
+      "assets/img/illustration-lisbonne.png",
+      "assets/img/illustration-plage.jpg"
     ],
-    description: "Réalisation d'une illustration à partir d'une photo représentant un paysage de Lisbonne, construite autour des façades colorées et de leurs azulejos. Illustration réalisée sur Illustrator à l'aide de différents outils.",
+    description: "Réalisation de différentes illustrations sur le logiciel Illustrator à l'aide de différents outils, à partir d'une photo représentant des paysages variés.\nIci : Santorin, la Crète et Lisbonne.",
     tags: ["Illustration vectorielle", "D'après photo", "Voyage"]
   },
   {
@@ -309,6 +331,7 @@ const PROJECTS = [
     category: "illustrations",
     categoryLabel: "Illustrations",
     cover: "assets/img/illustration-vernet.png",
+    coverRatio: 0.679,
     gallery: [
       "assets/img/illustration-vernet.png",
       "assets/img/illustration-loheac.jpg"
@@ -323,50 +346,12 @@ const PROJECTS = [
     category: "illustrations",
     categoryLabel: "Illustrations",
     cover: "assets/img/illustration-venise.png",
+    coverRatio: 1.0,
     gallery: [
       "assets/img/illustration-venise.png"
     ],
     description: "Réalisation de l'illustration d'une ville à l'aide des outils 3D du logiciel Illustrator. J'ai créé une scène vénitienne en vue isométrique : un canal, son pont et ses façades pastel reconstitués comme une maquette.",
     tags: ["Illustration vectorielle", "Outils 3D Illustrator", "Isométrie"]
-  },
-  {
-    id: "illustration-plage",
-    title: "Bord de mer",
-    subtitle: "Illustration d'après photo",
-    category: "illustrations",
-    categoryLabel: "Illustrations",
-    cover: "assets/img/illustration-plage.jpg",
-    gallery: [
-      "assets/img/illustration-plage.jpg"
-    ],
-    description: "Réalisation d'une illustration sur Illustrator, à partir d'une photo. Illustration représentant deux personnes face à un coucher de soleil sur la mer.",
-    tags: ["Illustration vectorielle", "D'après photo"]
-  },
-  {
-    id: "illustration-fenetre",
-    title: "Vue sur Santorin",
-    subtitle: "Illustration d'après photo",
-    category: "illustrations",
-    categoryLabel: "Illustrations",
-    cover: "assets/img/illustration-fenetre.jpg",
-    gallery: [
-      "assets/img/illustration-fenetre.jpg"
-    ],
-    description: "Réalisation d'une illustration à partir d'une photo représentant un paysage de la ville de Santorin, depuis une petite boutique d'artiste. Illustration réalisée sur Illustrator à l'aide des différents outils.",
-    tags: ["Illustration vectorielle", "D'après photo"]
-  },
-  {
-    id: "illustration-architecture",
-    title: "Muralla Roja",
-    subtitle: "Affiche sérigraphiée",
-    category: "illustrations",
-    categoryLabel: "Illustrations",
-    cover: "assets/img/illustration-architecture.jpg",
-    gallery: [
-      "assets/img/illustration-architecture.jpg"
-    ],
-    description: "Réalisation d'une affiche pour impression en sérigraphie sur un thème choisi. J'ai décidé de réaliser sur Illustrator un graphisme représentant un paysage qui m'intrigue beaucoup, en variant entre aplats et dégradés.",
-    tags: ["Illustration vectorielle", "Sérigraphie", "Affiche"]
   },
   {
     id: "illustration-affiches-pop",
@@ -375,6 +360,7 @@ const PROJECTS = [
     category: "illustrations",
     categoryLabel: "Illustrations",
     cover: "assets/img/illustration-aperol.jpg",
+    coverRatio: 0.707,
     gallery: [
       "assets/img/illustration-aperol.jpg",
       "assets/img/illustration-bottes.jpg",
@@ -390,6 +376,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/jcg-cover.jpg",
+    coverRatio: 1.5,
     gallery: [
       "assets/img/jcg-cover.jpg",
       "assets/img/jcg-detail-2.jpg",
@@ -412,6 +399,7 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/haricots-detail-6.jpg",
+    coverRatio: 1.415,
     gallery: [
       "assets/img/haricots-cover.jpg",
       "assets/img/haricots-detail-1.jpg",
@@ -435,10 +423,9 @@ const PROJECTS = [
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/voyage-amerique-detail-4.jpg",
+    coverRatio: 1.333,
     gallery: [
       "assets/img/voyage-amerique-detail-4.jpg",
-      "assets/img/voyage-amerique-cover.jpg",
-      "assets/img/voyage-amerique-detail-2.jpg",
       "assets/img/voyage-amerique-detail-3.jpg",
       "assets/img/voyage-amerique-detail-1.jpg",
       "assets/img/voyage-amerique-detail-5.jpg",
@@ -454,6 +441,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/brochure-thematique-cover.jpg",
+    coverRatio: 1.5,
     gallery: [
       "assets/img/brochure-thematique-cover.jpg",
       "assets/img/brochure-thematique-detail-1.jpg",
@@ -462,20 +450,20 @@ const PROJECTS = [
     description: "Réalisation d’une brochure pour présenter les différents voyages thématiques de Richou Voyages, à savoir les carnavals, les marchés de Noel, les nouvel an, les voyages neiges… Mise en page réalisée sur Indesign à l’aide du logiciel Easycatalogue",
     tags: ["Mise en page", "InDesign", "EasyCatalog"]
   },
-  {
-    id: "brochure-groupe",
-    title: "Brochure groupe",
-    subtitle: "Richou Voyages",
-    category: "print",
-    categoryLabel: "Print et Édition",
-    cover: "assets/img/brochure-groupe-cover.jpg",
-    gallery: [
-      "assets/img/brochure-groupe-cover.jpg",
-      "assets/img/brochure-groupe-detail-1.jpg"
-    ],
-    description: "Dans le cadre de mon poste chez Richou Voyages, j’ai eu l’occasion de réaliser une petite plaquette pour présenter quelques voyages proposé à faire en groupe de voyage (amis, famille, entreprise…) Plaquette réalisée sur indesign.",
-    tags: ["Plaquette", "Mise en page", "InDesign"]
-  },
+  // {
+  //   id: "brochure-groupe",
+  //   title: "Brochure groupe",
+  //   subtitle: "Richou Voyages",
+  //   category: "print",
+  //   categoryLabel: "Print et Édition",
+  //   cover: "assets/img/brochure-groupe-cover.jpg",
+  //   gallery: [
+  //     "assets/img/brochure-groupe-cover.jpg",
+  //     "assets/img/brochure-groupe-detail-1.jpg"
+  //   ],
+  //   description: "Dans le cadre de mon poste chez Richou Voyages, j’ai eu l’occasion de réaliser une petite plaquette pour présenter quelques voyages proposé à faire en groupe de voyage (amis, famille, entreprise…) Plaquette réalisée sur indesign.",
+  //   tags: ["Plaquette", "Mise en page", "InDesign"]
+  // },
   {
     id: "split",
     title: "Dépliant Split",
@@ -483,6 +471,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/split-cover.jpg",
+    coverRatio: 1.5,
     gallery: [
       "assets/img/split-cover.jpg",
       "assets/img/split-detail-1.jpg",
@@ -501,6 +490,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/flyer-bons-plans-cover.jpg",
+    coverRatio: 0.867,
     gallery: [
       "assets/img/flyer-bons-plans-cover.jpg",
       "assets/img/flyer-bons-plans-detail-1.jpg"
@@ -515,10 +505,11 @@ const PROJECTS = [
     category: "video",
     categoryLabel: "Motion et Vidéo",
     cover: "assets/img/motion-rse-poster.jpg",
+    coverRatio: 1.778,
     gallery: [
       { video: "assets/video/motion-rse.mp4", poster: "assets/img/motion-rse-poster.jpg" }
     ],
-    description: "Réalisation d’une animation sur le thème de la RSE, le but était de mettre en avant ce principe de Responsabilité Sociétale des Entreprises en le présentant aux entreprises et en y intégrant une voix off et des animations claire et ludiques.",
+    description: "Réalisation d’une animation sur le thème de la RSE, le but était de mettre en avant ce principe de Responsabilité Sociétale des Entreprises en le présentant aux entreprises et en y intégrant une voix off et des animations claires et ludiques.",
     tags: ["Motion design", "Voix off", "Animation"]
   },
   {
@@ -528,6 +519,7 @@ const PROJECTS = [
     category: "video",
     categoryLabel: "Motion et Vidéo",
     cover: "assets/img/animation-valise-poster.jpg",
+    coverRatio: 1.778,
     gallery: [
       { video: "assets/video/animation-valise.mp4", poster: "assets/img/animation-valise-poster.jpg" }
     ],
@@ -536,11 +528,12 @@ const PROJECTS = [
   },
   {
     id: "video-alternance",
-    title: "Video Richou alternance",
+    title: "Vidéo Richou alternance",
     subtitle: "Campagnes d’alternance",
     category: "video",
     categoryLabel: "Motion et Vidéo",
     cover: "assets/img/alternance-richou-recrute-poster.jpg",
+    coverRatio: 0.562,
     gallery: [
       { video: "assets/video/alternance-richou-recrute.mp4", poster: "assets/img/alternance-richou-recrute-poster.jpg" },
       { video: "assets/video/alternance-journee-juliette.mp4", poster: "assets/img/alternance-journee-juliette-poster.jpg" },
@@ -558,6 +551,7 @@ const PROJECTS = [
     category: "video",
     categoryLabel: "Motion et Vidéo",
     cover: "assets/img/video-voyage-budapest-poster.jpg",
+    coverRatio: 1.778,
     gallery: [
       { video: "assets/video/video-voyage-budapest.mp4", poster: "assets/img/video-voyage-budapest-poster.jpg" },
       { video: "assets/video/video-voyage-top5-culture.mp4", poster: "assets/img/video-voyage-top5-culture-poster.jpg" },
@@ -573,6 +567,7 @@ const PROJECTS = [
     category: "photographie",
     categoryLabel: "Photographie",
     cover: "assets/img/photo-personal-1.jpg",
+    coverRatio: 0.562,
     gallery: [
       "assets/img/photo-personal-1.jpg",
       "assets/img/photo-personal-2.jpg",
@@ -593,6 +588,7 @@ const PROJECTS = [
     category: "photographie",
     categoryLabel: "Photographie",
     cover: "assets/img/photo-studiom-1.jpg",
+    coverRatio: 0.751,
     gallery: [
       "assets/img/photo-studiom-1.jpg",
       "assets/img/photo-studiom-2.jpg",

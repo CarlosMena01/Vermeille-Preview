@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card__media">
           <div class="card__tags${hasVideo ? ' card__tags--has-play' : ''}">${tags(p, 'card__tag')}</div>
           ${hasVideo ? '<span class="card__play" aria-hidden="true"></span>' : ''}
-          <img src="${p.cover}" alt="${p.title}" loading="lazy">
+          <img src="${p.cover}" alt="${p.title}" loading="lazy"${p.coverRatio ? ` style="aspect-ratio:${p.coverRatio}"` : ''}>
           <div class="card__overlay">
             <span class="card__overlay-text">Voir le projet →</span>
           </div>
@@ -223,9 +223,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return 3;
   };
 
-  /* Répartition EN LIGNE : la carte 1 va en haut de la colonne 1, la 2 en haut
-     de la colonne 2, la 3 en haut de la colonne 3, la 4 sous la 1re… L'ordre de
-     PROJECT_ORDER se lit donc de gauche à droite, ligne par ligne. */
+  /* Répartition EN LIGNE pour la sélection mise en avant : la carte 1 va en haut
+     de la colonne 1, la 2 en haut de la colonne 2, la 3 en haut de la colonne 3,
+     la 4 sous la 1re… Le début de PROJECT_ORDER se lit donc de gauche à droite,
+     ligne par ligne.
+
+     Le reste du portfolio n'a pas d'ordre imposé : chaque carte rejoint la
+     colonne la plus courte. Sans ça, les hauteurs étant très variables, une
+     colonne se termine bien avant les autres et laisse un grand vide en bas. */
+  const featured = new Set(PROJECT_ORDER.slice(0, PROJECT_ORDER_FEATURED));
+
   const layoutMasonry = () => {
     const cols = columnCount();
     const visible = cardEls.filter(el =>
@@ -238,7 +245,22 @@ document.addEventListener('DOMContentLoaded', () => {
       masonryEl.appendChild(col);
       return col;
     });
+
+    // 1er passage : tout le monde en place, pour mesurer les cartes en une fois
     visible.forEach((el, i) => colEls[i % cols].appendChild(el));
+    const heights = new Map(visible.map(el => [el, el.offsetHeight]));
+    const gap = parseFloat(getComputedStyle(colEls[0]).rowGap) || 0;
+
+    // 2e passage : la sélection garde sa ligne, le reste comble le plus court
+    const filled = new Array(cols).fill(0);
+    colEls.forEach(col => { col.textContent = ''; });
+    visible.forEach((el, i) => {
+      const target = featured.has(el.dataset.id)
+        ? i % cols
+        : filled.indexOf(Math.min(...filled));
+      colEls[target].appendChild(el);
+      filled[target] += heights.get(el) + gap;
+    });
 
     currentCols = cols;
     observeReveals(masonryEl);

@@ -413,14 +413,16 @@ ul{ margin:0; padding:0; list-style:none; }
   font-weight: 500;
   letter-spacing: .06em;
   text-transform: uppercase;
-  font-size: .74rem;
+  /* l’intitulé en gras est la ligne la plus longue : on la laisse rétrécir
+     sur les petits écrans pour qu’elle tienne toujours d’un seul tenant */
+  font-size: clamp(.6rem, 2.9vw, .74rem);
   line-height: 1.75;
   margin: 0 0 18px;
 }
-/* Toujours sur deux lignes : l'intitulé sur la première, la disponibilité et
-   la ville sur la seconde. Chaque mention reste d'un seul tenant. */
+/* Toujours sur deux lignes : l'intitulé — en gras — sur la première, la
+   disponibilité et la ville sur la seconde. Chaque mention reste d'un seul tenant. */
 .hero__kicker > span{ white-space: nowrap; }
-.hero__kicker > span:first-child{ display: block; }
+.hero__kicker > span:first-child{ display: block; font-weight: 700; }
 .hero__kicker > span:last-child::before{
   content: "·";
   margin-right: .3em;
@@ -1348,6 +1350,8 @@ ul{ margin:0; padding:0; list-style:none; }
   color: var(--ink-soft);
   max-width: 640px;
   margin: 0 0 24px;
+  /* les descriptions sont du texte brut : on respecte leurs retours à la ligne */
+  white-space: pre-line;
 }
 .modal__chips{
   display: flex;
