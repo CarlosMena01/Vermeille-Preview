@@ -629,49 +629,48 @@ ul{ margin:0; padding:0; list-style:none; }
   width: 2px;
   background: repeating-linear-gradient(180deg, var(--coral-light) 0 8px, transparent 8px 16px);
 }
-.timeline-item{
+/* Une étape réunit l'expérience (à gauche) et le diplôme (à droite) sur
+   une seule ligne, reliés par un point unique. */
+.timeline-row{
   position: relative;
-  width: 50%;
+  display: flex;
+  align-items: flex-start;
   padding-bottom: 34px;
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .7s var(--ease), transform .7s var(--ease);
 }
-.timeline-item.in-view{
+.timeline-row.in-view{
   opacity: 1;
   transform: translateY(0);
 }
-.timeline-item:last-child{ padding-bottom: 0; }
+.timeline-row:last-child{ padding-bottom: 0; }
+.timeline-row__dot{
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 5px solid var(--cream);
+  background: var(--coral);
+  box-shadow: 0 0 0 2px var(--coral-light);
+  transition: opacity .45s var(--ease), transform .45s var(--ease);
+}
 
+.timeline-item{ width: 50%; }
 .timeline-item--experience{
   padding-right: 46px;
   text-align: right;
 }
+/* seule à droite quand l'étape n'a pas d'expérience en face */
 .timeline-item--formation{
-  margin-left: 50%;
+  margin-left: auto;
   padding-left: 46px;
 }
 
 .timeline-item__inner{
   transition: opacity .45s var(--ease);
-}
-.timeline-item__dot{
-  position: absolute;
-  top: 4px;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  border: 5px solid var(--cream);
-  transition: opacity .45s var(--ease), transform .45s var(--ease);
-}
-.timeline-item--experience .timeline-item__dot{
-  right: -13px;
-  background: var(--coral);
-  box-shadow: 0 0 0 2px var(--coral-light);
-}
-.timeline-item--formation .timeline-item__dot{
-  left: -13px;
-  background: var(--coral);
-  box-shadow: 0 0 0 2px var(--coral-light);
 }
 
 .timeline-item__date{
@@ -727,16 +726,17 @@ ul{ margin:0; padding:0; list-style:none; }
 
 /* --- mise en avant d'une seule piste via les onglets --- */
 .parcours.is-focus-formation .timeline-item--experience .timeline-item__inner,
-.parcours.is-focus-formation .timeline-item--experience .timeline-item__dot,
+.parcours.is-focus-formation .timeline-row--experience .timeline-row__dot,
 .parcours.is-focus-formation .timeline-head--experience,
 .parcours.is-focus-experience .timeline-item--formation .timeline-item__inner,
-.parcours.is-focus-experience .timeline-item--formation .timeline-item__dot,
+.parcours.is-focus-experience .timeline-row--formation .timeline-row__dot,
 .parcours.is-focus-experience .timeline-head--formation{
   opacity: .26;
 }
-.parcours.is-focus-formation .timeline-item--experience .timeline-item__dot,
-.parcours.is-focus-experience .timeline-item--formation .timeline-item__dot{
-  transform: scale(.72);
+/* le point d'une étape mixte appartient aux deux pistes : il reste entier */
+.parcours.is-focus-formation .timeline-row--experience .timeline-row__dot,
+.parcours.is-focus-experience .timeline-row--formation .timeline-row__dot{
+  transform: translateX(-50%) scale(.72);
 }
 .parcours.is-focus-formation .timeline-item--experience .timeline-item__inner,
 .parcours.is-focus-formation .timeline-head--experience,
@@ -750,7 +750,8 @@ ul{ margin:0; padding:0; list-style:none; }
 --------------------------------------------------------- */
 .portfolio{
   position: relative;
-  padding: 60px 0 50px;
+  /* la section ouvre le site depuis le hero : même respiration que le parcours */
+  padding: 120px 0 50px;
 }
 
 .filters{
@@ -796,6 +797,14 @@ ul{ margin:0; padding:0; list-style:none; }
   flex-direction: column;
   gap: 24px;
 }
+
+/* le bouton d'aperçu : centré sous la grille, à distance des cartes */
+.portfolio__more{
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+}
+.portfolio__more [hidden]{ display: none; }
 
 .card{
   margin-bottom: 0;
@@ -1415,6 +1424,9 @@ ul{ margin:0; padding:0; list-style:none; }
     left: 13px;
     transform: none;
   }
+  /* les deux entrées d'une étape s'empilent sous le même point */
+  .timeline-row{ display: block; }
+  .timeline-row__dot{ left: 13px; }
   .timeline-item{
     width: 100%;
     margin-left: 0;
@@ -1422,11 +1434,7 @@ ul{ margin:0; padding:0; list-style:none; }
     padding-right: 0;
     text-align: left;
   }
-  .timeline-item--experience .timeline-item__dot,
-  .timeline-item--formation .timeline-item__dot{
-    left: 0;
-    right: auto;
-  }
+  .timeline-item + .timeline-item{ margin-top: 20px; }
   .timeline-item__track{ display: block; }
 }
 

@@ -52,6 +52,11 @@ const PROJECT_ORDER = [
    comblent la colonne la plus courte, pour éviter un grand vide tout en bas. */
 const PROJECT_ORDER_FEATURED = 15;
 
+/* Aperçu du portfolio : la grille s'arrête à ce projet et un bouton déplie
+   le reste, pour ne pas assommer le visiteur avec trente et une cartes. */
+const PROJECT_PREVIEW_LAST = "illustrations-paysages";
+
+
 /* `coverRatio` = largeur / hauteur de l’image de couverture. Il réserve la bonne
    hauteur avant même que l’image soit chargée : la grille ne saute plus au
    défilement et elle peut être équilibrée dès le premier rendu. */
@@ -601,19 +606,32 @@ const PROJECTS = [
   }
 ];
 
-const TIMELINE = {
-  formation: [
-    { date: "Juillet 2020", title: "BAC STD2A", place: "Lycée Jeanne Delanoue, Cholet", desc: "Baccalauréat Sciences et Technologies du Design et des Arts Appliqués." },
-    { date: "Juin 2022", title: "BTS Communication", place: "ESUPEC, Cholet", desc: "Obtention de mon BTS Communication." },
-    { date: "Juillet 2023", title: "Bachelor Infographie", place: "Studio M — école de l'ESPL, Angers", desc: "Obtention de mon Bachelor Infographie." },
-    { date: "Septembre 2024", title: "Bachelor Design Graphique", place: "EEGP, Angers", desc: "Obtention de mon Bachelor Design Graphique." }
-  ],
-  experience: [
-    { date: "Juin 2018", title: "Graphiste (stage)", place: "Publi Impress, La Séguinière", desc: "Première expérience en agence de communication visuelle." },
-    { date: "Juin 2019", title: "Graphiste textile (stage)", place: "ICODE, Saint-Macaire-en-Mauges", desc: "Création graphique appliquée au textile." },
-    { date: "Mai — Juin 2021", title: "Assistante communication et graphisme (stage)", place: "Mraude, Trélazé", desc: "Support graphique et communication pour l'agence." },
-    { date: "Février 2022", title: "Assistante commerciale (stage)", place: "Univision, Cholet", desc: "Immersion côté commercial, complémentaire à mon profil créatif." },
-    { date: "2022 — 2024", title: "Graphiste et assistante communication (alternance)", place: "Richou Voyages, Cholet", desc: "Création de supports de communication et refonte d'identités visuelles pour le groupe." },
-    { date: "2024 — 2025", title: "Graphiste et assistante communication", place: "Richou Voyages, Cholet", desc: "Poursuite de mon poste au sein de l'entreprise, en charge de la création graphique." }
-  ]
-};
+/* Le parcours se lit par étapes : chaque étape réunit un diplôme et
+   l'expérience qui l'accompagne, côte à côte sur la même ligne et sur un
+   seul point. Une étape peut n'avoir qu'un seul des deux. L'ordre du
+   tableau est l'ordre affiché. */
+const TIMELINE = [
+  {
+    experience: { date: "Juin 2018", title: "Graphiste (stage)", place: "Publi Impress, La Séguinière", desc: "Première expérience en agence de communication visuelle." }
+  },
+  {
+    formation:  { date: "Juillet 2020", title: "BAC STD2A", place: "Lycée Jeanne Delanoue, Cholet", desc: "Baccalauréat Sciences et Technologies du Design et des Arts Appliqués." },
+    experience: { date: "Juin 2019", title: "Graphiste textile (stage)", place: "ICODE, Saint-Macaire-en-Mauges", desc: "Création graphique appliquée au textile." }
+  },
+  {
+    formation:  { date: "Juin 2022", title: "BTS Communication", place: "ESUPEC, Cholet", desc: "Obtention de mon BTS Communication." },
+    experience: { date: "Mai — Juin 2021", title: "Assistante communication et graphisme (stage)", place: "Mraude, Trélazé", desc: "Support graphique et communication pour l'agence." }
+  },
+  {
+    experience: { date: "Février 2022", title: "Assistante commerciale (stage)", place: "Univision, Cholet", desc: "Immersion côté commercial, complémentaire à mon profil créatif." }
+  },
+  {
+    formation:  { date: "Juillet 2023", title: "Bachelor Infographie", place: "Studio M — école de l'ESPL, Angers", desc: "Obtention de mon Bachelor Infographie." },
+    experience: { date: "2022 — 2024", title: "Graphiste et assistante communication (alternance)", place: "Richou Voyages, Cholet", desc: "Création de supports de communication et refonte d'identités visuelles pour le groupe." }
+  },
+  {
+    formation:  { date: "Septembre 2024", title: "Bachelor Design Graphique", place: "EEGP, Angers", desc: "Obtention de mon Bachelor Design Graphique." },
+    experience: { date: "2024 — 2025", title: "Graphiste et assistante communication", place: "Richou Voyages, Cholet", desc: "Poursuite de mon poste au sein de l'entreprise, en charge de la création graphique." }
+  }
+];
+

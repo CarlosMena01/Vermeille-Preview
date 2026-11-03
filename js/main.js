@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
   const observeReveals = (root = document) => {
-    root.querySelectorAll('.reveal, .timeline-item, .card').forEach(el => revealObserver.observe(el));
+    root.querySelectorAll('.reveal, .timeline-row, .card').forEach(el => revealObserver.observe(el));
   };
   observeReveals();
 
@@ -90,38 +90,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineEl = document.getElementById('timeline');
   const tabs = document.querySelectorAll('.timeline-tab');
 
-  const MONTHS = ['janvier','février','mars','avril','mai','juin',
-                  'juillet','août','septembre','octobre','novembre','décembre'];
-
-  // "Mai — Juin 2021" -> 202105 ; "2022 — 2024" -> 202206 (mi-année par défaut)
-  const dateKey = (raw) => {
-    const s = raw.toLowerCase();
-    const year = (s.match(/\d{4}/) || [])[0];
-    const monthIdx = MONTHS.findIndex(m => s.includes(m));
-    return (year ? Number(year) : 0) * 100 + (monthIdx >= 0 ? monthIdx + 1 : 6);
-  };
-
   const TRACK_LABEL = { formation: 'Formation', experience: 'Expérience' };
 
-  const renderTimeline = () => {
-    const entries = [
-      ...(TIMELINE.formation || []).map(i => ({ ...i, track: 'formation' })),
-      ...(TIMELINE.experience || []).map(i => ({ ...i, track: 'experience' }))
-    ].sort((a, b) => dateKey(a.date) - dateKey(b.date));
-
-    timelineEl.innerHTML = entries.map(item => `
-      <div class="timeline-item timeline-item--${item.track}">
-        <span class="timeline-item__dot"></span>
+  const timelineCard = (item, track) => !item ? '' : `
+      <div class="timeline-item timeline-item--${track}">
         <div class="timeline-item__inner">
           <p class="timeline-item__date">${item.date}</p>
           <div class="timeline-item__card">
-            <span class="timeline-item__track">${TRACK_LABEL[item.track]}</span>
+            <span class="timeline-item__track">${TRACK_LABEL[track]}</span>
             <h3 class="timeline-item__title">${item.title}</h3>
             <p class="timeline-item__place">${item.place}</p>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+
+  /* Une étape du parcours = une ligne et un seul point : l'expérience à
+     gauche, le diplôme qu'elle accompagne à droite. Deux fois moins de
+     hauteur qu'une entrée par ligne, et le lien entre les deux se voit
+     tout de suite. Une étape qui n'a qu'un seul côté porte une classe
+     de piste, pour que les onglets puissent estomper son point. */
+  const renderTimeline = () => {
+    timelineEl.innerHTML = TIMELINE.map(step => {
+      const alone = step.formation && step.experience
+        ? ''
+        : ` timeline-row--${step.formation ? 'formation' : 'experience'}`;
+      return `
+      <div class="timeline-row${alone}">
+        <span class="timeline-row__dot"></span>
+        ${timelineCard(step.experience, 'experience')}
+        ${timelineCard(step.formation, 'formation')}
+      </div>`;
+    }).join('');
     observeReveals(timelineEl);
   };
 
@@ -157,6 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------- Portfolio masonry ---------------- */
   const masonryEl = document.getElementById('masonry');
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioEl = document.getElementById('portfolio');
+  const moreBtn = document.getElementById('portfolioMore');
+
+  /* La grille s'ouvre sur un aperçu — au moins jusqu'à PROJECT_PREVIEW_LAST —
+     et le bouton déplie le reste. Le libellé annonce combien de projets
+     restent : on sait ce qu'on gagne avant de cliquer.
+
+     L'aperçu est arrondi à des lignes entières : une dernière ligne à une
+     seule carte laisserait un vide de 500 px juste au-dessus du bouton. */
+  const previewMin = PROJECT_ORDER.indexOf(PROJECT_PREVIEW_LAST) + 1;
+  const previewCount = (cols) => Math.ceil(previewMin / cols) * cols;
+  let expanded = false;
 
   const CATEGORY_LABEL = {
     visuelles: 'Identités visuelles',
@@ -235,8 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const layoutMasonry = () => {
     const cols = columnCount();
-    const visible = cardEls.filter(el =>
+    const matching = cardEls.filter(el =>
       currentFilter === 'all' || el.dataset.categories.split(' ').includes(currentFilter));
+    const preview = previewCount(cols);
+    const visible = expanded ? matching : matching.slice(0, preview);
 
     masonryEl.textContent = '';
     const colEls = Array.from({ length: cols }, () => {
@@ -251,11 +264,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const heights = new Map(visible.map(el => [el, el.offsetHeight]));
     const gap = parseFloat(getComputedStyle(colEls[0]).rowGap) || 0;
 
-    // 2e passage : la sélection garde sa ligne, le reste comble le plus court
+    // 2e passage : la sélection garde sa ligne, le reste comble le plus court.
+    // La dernière ligne, si elle est incomplète (aperçu replié), comble elle
+    // aussi : sinon une seule carte ferait déborder sa colonne de 500 px.
+    const fullRows = Math.floor(visible.length / cols) * cols;
     const filled = new Array(cols).fill(0);
     colEls.forEach(col => { col.textContent = ''; });
     visible.forEach((el, i) => {
-      const target = featured.has(el.dataset.id)
+      const target = featured.has(el.dataset.id) && i < fullRows
         ? i % cols
         : filled.indexOf(Math.min(...filled));
       colEls[target].appendChild(el);
@@ -264,7 +280,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentCols = cols;
     observeReveals(masonryEl);
+    updateMoreBtn(matching.length, preview);
   };
+
+  function updateMoreBtn(total, preview) {
+    const rest = total - preview;
+    moreBtn.hidden = rest <= 0;
+    moreBtn.setAttribute('aria-expanded', String(expanded));
+    moreBtn.textContent = expanded
+      ? 'Voir moins de projets'
+      : `Voir les ${rest} autres projets`;
+  }
+
+  moreBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    layoutMasonry();
+    // en repliant, on remonte en haut de la grille : sinon on se retrouve
+    // propulsé dans le pied de page sans savoir où l'on est
+    if (!expanded) portfolioEl.scrollIntoView({ block: 'start' });
+  });
 
   layoutMasonry();
 
@@ -273,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       filterBtns.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
       currentFilter = btn.dataset.filter;
+      expanded = false;
       layoutMasonry();
     });
   });
