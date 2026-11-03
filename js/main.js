@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------- Portfolio masonry ---------------- */
   const masonryEl = document.getElementById('masonry');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const portfolioEl = document.getElementById('portfolio');
   const moreBtn = document.getElementById('portfolioMore');
 
   const moreLabel = moreBtn.querySelector('.portfolio__more-label');
+  const moreWrap = moreBtn.parentElement;
 
   /* L'aperçu ne tronque pas la grille, il la coupe en plein milieu des
      cartes : on s'arrête un peu sous PROJECT_PREVIEW_LAST et le dégradé du
@@ -170,6 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const PEEK = 190;        // ce qu'on laisse entrevoir de la suite
   const MIN_HIDDEN = 6;    // en dessous, replier n'apporte rien
   let expanded = false;
+  let foldAnchor = null;   // position du bouton à tenir pendant le repli
+  let foldScroll = 0;      // défilement à tenir pendant l'ouverture
 
   const CATEGORY_LABEL = {
     visuelles: 'Identités visuelles',
@@ -286,13 +288,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Place la coupe juste sous PROJECT_PREVIEW_LAST, plus un morceau de ce
      qui suit. Si la coupe tombe déjà au bout de la grille — un filtre avec
      peu de projets — il n'y a rien à replier et le bouton disparaît. */
-  function applyPreview() {
-    masonryEl.classList.remove('masonry--preview');
+  function applyPreview(animate) {
+    masonryEl.classList.remove('masonry--preview', 'masonry--folding');
     masonryEl.style.maxHeight = '';
 
     const cards = Array.from(masonryEl.querySelectorAll('.card'));
     const last = masonryEl.querySelector(`.card[data-id="${PROJECT_PREVIEW_LAST}"]`);
     const box = masonryEl.getBoundingClientRect();
+    const full = Math.round(box.height);
     const cut = last
       ? Math.round(last.getBoundingClientRect().bottom - box.top) + PEEK
       : 0;
@@ -305,6 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // on ne replie que s'il y a vraiment de quoi : cacher trois projets
     // derrière un bouton, c'est de la gymnastique pour rien
     moreBtn.hidden = rest < MIN_HIDDEN;
+    moreWrap.classList.toggle('portfolio__more--empty', moreBtn.hidden);
+    moreWrap.classList.toggle('portfolio__more--over', !moreBtn.hidden && !expanded);
     if (moreBtn.hidden) return;
 
     moreBtn.setAttribute('aria-expanded', String(expanded));
@@ -312,17 +317,69 @@ document.addEventListener('DOMContentLoaded', () => {
       ? 'Replier les projets'
       : `Voir les ${rest} autres projets`;
 
+    if (animate) { foldTo(expanded ? cut : full, expanded ? full : cut); return; }
     if (expanded) return;
     masonryEl.classList.add('masonry--preview');
     masonryEl.style.maxHeight = `${cut}px`;
   }
 
+  /* La grille s'ouvre et se referme à hauteur animée, le dégradé suivant le
+     bord bas comme un rideau.
+
+     Au repli, le bouton sert d'ancre : on recale le défilement à chaque image
+     pour qu'il ne bouge pas d'un pixel. Sans ça on restait planté dans le pied
+     de page, ou on était renvoyé d'un coup tout en haut de la grille — dans
+     les deux cas on perd le fil. À l'ouverture, au contraire, on ne touche à
+     rien : le nouveau contenu arrive sous nos yeux, là où on était. */
+  function foldTo(from, to) {
+    const anchor = foldAnchor;
+    const keepAt = foldScroll;
+    let raf = 0;
+    let timer = 0;
+
+    masonryEl.classList.add('masonry--preview', 'masonry--folding');
+    masonryEl.style.maxHeight = `${from}px`;
+    void masonryEl.offsetHeight;          // fige le point de départ
+    masonryEl.style.maxHeight = `${to}px`;
+
+    const hold = () => {
+      if (anchor !== null) {
+        // repli : le bouton reste exactement où il est
+        const drift = moreBtn.getBoundingClientRect().top - anchor;
+        if (Math.abs(drift) > 0.5) window.scrollBy({ top: drift, behavior: 'instant' });
+      } else if (Math.abs(window.scrollY - keepAt) > 0.5) {
+        // ouverture : on ne bouge pas. Le navigateur, lui, veut suivre le bas
+        // de la grille qui descend, et nous emmènerait au-delà des projets
+        // qui viennent d'apparaître.
+        window.scrollTo({ top: keepAt, behavior: 'instant' });
+      }
+      raf = requestAnimationFrame(hold);
+    };
+    hold();
+
+    const done = (e) => {
+      if (e && (e.target !== masonryEl || e.propertyName !== 'max-height')) return;
+      masonryEl.removeEventListener('transitionend', done);
+      clearTimeout(timer);
+      cancelAnimationFrame(raf);
+      masonryEl.classList.remove('masonry--folding');
+      if (expanded) {
+        masonryEl.classList.remove('masonry--preview');
+        masonryEl.style.maxHeight = '';
+      }
+    };
+    masonryEl.addEventListener('transitionend', done);
+    timer = setTimeout(done, 1000);       // filet de sécurité
+  }
+
+  /* Relevés AVANT le moindre changement : le bouton remonte déjà de 72 px
+     rien qu'en changeant de marge, et c'est bien sa position d'origine —
+     celle qu'on avait sous les yeux en cliquant — qui doit rester fixe. */
   moreBtn.addEventListener('click', () => {
+    foldAnchor = expanded ? moreBtn.getBoundingClientRect().top : null;
+    foldScroll = window.scrollY;
     expanded = !expanded;
-    applyPreview();
-    // en repliant, on remonte en haut de la grille : sinon on se retrouve
-    // propulsé dans le pied de page sans savoir où l'on est
-    if (!expanded) portfolioEl.scrollIntoView({ block: 'start' });
+    applyPreview(true);
   });
 
   layoutMasonry();

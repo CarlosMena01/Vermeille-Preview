@@ -422,7 +422,13 @@ ul{ margin:0; padding:0; list-style:none; }
 /* Toujours sur deux lignes : l'intitulé — en gras — sur la première, la
    disponibilité et la ville sur la seconde. Chaque mention reste d'un seul tenant. */
 .hero__kicker > span{ white-space: nowrap; }
-.hero__kicker > span:first-child{ display: block; font-weight: 700; }
+/* Scandia ne monte pas au-delà de 700 : un filet de contour épaissit le
+   trait d'un demi-cran sans changer de typographie. */
+.hero__kicker > span:first-child{
+  display: block;
+  font-weight: 900;
+  -webkit-text-stroke: .2px currentColor;
+}
 .hero__kicker > span:last-child::before{
   content: "·";
   margin-right: .3em;
@@ -806,6 +812,9 @@ ul{ margin:0; padding:0; list-style:none; }
   -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 170px), transparent);
           mask-image: linear-gradient(180deg, #000 calc(100% - 170px), transparent);
 }
+/* n'est posée que le temps du mouvement : hors animation la grille reprend
+   sa hauteur naturelle, sans transition à traîner */
+.masonry--folding{ transition: max-height .6s var(--ease); }
 
 .portfolio__more{
   display: flex;
@@ -814,9 +823,15 @@ ul{ margin:0; padding:0; list-style:none; }
   z-index: 2;
   margin-top: 44px;
 }
+/* la marge ne s'anime que pendant le pliage : au chargement elle doit
+   être bonne du premier coup, sans glissement */
+#masonry.masonry--folding + .portfolio__more{
+  transition: margin-top .6s var(--ease);
+}
 /* replié, le bouton remonte dans le dégradé : il prend la suite de la
    grille au lieu de flotter sous un bloc qui a l'air terminé */
-.masonry--preview + .portfolio__more{ margin-top: -28px; }
+.portfolio__more--over{ margin-top: -28px; }
+.portfolio__more--empty{ margin-top: 0; }
 .portfolio__more [hidden]{ display: none; }
 .portfolio__more-btn{ gap: 11px; }
 .portfolio__chevron{
