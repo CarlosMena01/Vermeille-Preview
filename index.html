@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Hanken Grotesk ≈ Scandia (titres) · Nunito Sans ≈ Sofia Pro (sous-titres) · Gluten ≈ manuscrite du logo -->
 <link href="https://fonts.googleapis.com/css2?family=Gluten:slnt,wght@0,400..800&family=Hanken+Grotesk:ital,wght@0,300..800;1,400&family=Nunito+Sans:opsz,wght@6..12,300..800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=11">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23F18B6F'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -115,9 +115,10 @@
       </div>
 
       <div class="portfolio__more">
-        <button type="button" class="btn btn--ghost" id="portfolioMore"
+        <button type="button" class="btn btn--primary portfolio__more-btn" id="portfolioMore"
                 aria-controls="masonry" aria-expanded="false" hidden>
-          Voir plus de projets
+          <span class="portfolio__more-label">Voir plus de projets</span>
+          <span class="portfolio__chevron" aria-hidden="true"></span>
         </button>
       </div>
 
@@ -237,7 +238,7 @@
   </div>
 </div>
 
-<script src="js/projects-data.js?v=9"></script>
-<script src="js/main.js?v=9"></script>
+<script src="js/projects-data.js?v=11"></script>
+<script src="js/main.js?v=11"></script>
 </body>
 </html>

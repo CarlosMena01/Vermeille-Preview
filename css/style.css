@@ -798,13 +798,37 @@ ul{ margin:0; padding:0; list-style:none; }
   gap: 24px;
 }
 
-/* le bouton d'aperçu : centré sous la grille, à distance des cartes */
+/* Aperçu replié : la grille est coupée en plein milieu des cartes et se
+   fond dans la page. Un bas de grille bien net laissait croire qu'il n'y
+   avait rien de plus ; des cartes entamées disent le contraire. */
+.masonry--preview{
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 170px), transparent);
+          mask-image: linear-gradient(180deg, #000 calc(100% - 170px), transparent);
+}
+
 .portfolio__more{
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 2;
   margin-top: 44px;
 }
+/* replié, le bouton remonte dans le dégradé : il prend la suite de la
+   grille au lieu de flotter sous un bloc qui a l'air terminé */
+.masonry--preview + .portfolio__more{ margin-top: -28px; }
 .portfolio__more [hidden]{ display: none; }
+.portfolio__more-btn{ gap: 11px; }
+.portfolio__chevron{
+  width: 7px; height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .35s var(--ease);
+}
+.portfolio__more-btn[aria-expanded="true"] .portfolio__chevron{
+  transform: translateY(1px) rotate(-135deg);
+}
 
 .card{
   margin-bottom: 0;

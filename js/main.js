@@ -159,14 +159,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const portfolioEl = document.getElementById('portfolio');
   const moreBtn = document.getElementById('portfolioMore');
 
-  /* La grille s'ouvre sur un aperçu — au moins jusqu'à PROJECT_PREVIEW_LAST —
-     et le bouton déplie le reste. Le libellé annonce combien de projets
-     restent : on sait ce qu'on gagne avant de cliquer.
+  const moreLabel = moreBtn.querySelector('.portfolio__more-label');
 
-     L'aperçu est arrondi à des lignes entières : une dernière ligne à une
-     seule carte laisserait un vide de 500 px juste au-dessus du bouton. */
-  const previewMin = PROJECT_ORDER.indexOf(PROJECT_PREVIEW_LAST) + 1;
-  const previewCount = (cols) => Math.ceil(previewMin / cols) * cols;
+  /* L'aperçu ne tronque pas la grille, il la coupe en plein milieu des
+     cartes : on s'arrête un peu sous PROJECT_PREVIEW_LAST et le dégradé du
+     CSS fond la coupe dans la page. Une grille qui s'arrêtait net donnait
+     l'impression qu'il n'y avait rien de plus ; des cartes entamées disent
+     le contraire sans un mot. Toutes les cartes restent posées dans le DOM,
+     l'aperçu n'est qu'une hauteur maximale. */
+  const PEEK = 190;        // ce qu'on laisse entrevoir de la suite
+  const MIN_HIDDEN = 6;    // en dessous, replier n'apporte rien
   let expanded = false;
 
   const CATEGORY_LABEL = {
@@ -246,10 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const layoutMasonry = () => {
     const cols = columnCount();
-    const matching = cardEls.filter(el =>
+    const visible = cardEls.filter(el =>
       currentFilter === 'all' || el.dataset.categories.split(' ').includes(currentFilter));
-    const preview = previewCount(cols);
-    const visible = expanded ? matching : matching.slice(0, preview);
 
     masonryEl.textContent = '';
     const colEls = Array.from({ length: cols }, () => {
@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gap = parseFloat(getComputedStyle(colEls[0]).rowGap) || 0;
 
     // 2e passage : la sélection garde sa ligne, le reste comble le plus court.
-    // La dernière ligne, si elle est incomplète (aperçu replié), comble elle
-    // aussi : sinon une seule carte ferait déborder sa colonne de 500 px.
+    // La dernière ligne, si elle est incomplète, comble elle aussi : sinon
+    // une seule carte ferait déborder sa colonne de 500 px.
     const fullRows = Math.floor(visible.length / cols) * cols;
     const filled = new Array(cols).fill(0);
     colEls.forEach(col => { col.textContent = ''; });
@@ -280,21 +280,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentCols = cols;
     observeReveals(masonryEl);
-    updateMoreBtn(matching.length, preview);
+    applyPreview();
   };
 
-  function updateMoreBtn(total, preview) {
-    const rest = total - preview;
-    moreBtn.hidden = rest <= 0;
+  /* Place la coupe juste sous PROJECT_PREVIEW_LAST, plus un morceau de ce
+     qui suit. Si la coupe tombe déjà au bout de la grille — un filtre avec
+     peu de projets — il n'y a rien à replier et le bouton disparaît. */
+  function applyPreview() {
+    masonryEl.classList.remove('masonry--preview');
+    masonryEl.style.maxHeight = '';
+
+    const cards = Array.from(masonryEl.querySelectorAll('.card'));
+    const last = masonryEl.querySelector(`.card[data-id="${PROJECT_PREVIEW_LAST}"]`);
+    const box = masonryEl.getBoundingClientRect();
+    const cut = last
+      ? Math.round(last.getBoundingClientRect().bottom - box.top) + PEEK
+      : 0;
+
+    const seen = last
+      ? cards.filter(c => c.getBoundingClientRect().bottom - box.top <= cut).length
+      : cards.length;
+    const rest = cards.length - seen;
+
+    // on ne replie que s'il y a vraiment de quoi : cacher trois projets
+    // derrière un bouton, c'est de la gymnastique pour rien
+    moreBtn.hidden = rest < MIN_HIDDEN;
+    if (moreBtn.hidden) return;
+
     moreBtn.setAttribute('aria-expanded', String(expanded));
-    moreBtn.textContent = expanded
-      ? 'Voir moins de projets'
+    moreLabel.textContent = expanded
+      ? 'Replier les projets'
       : `Voir les ${rest} autres projets`;
+
+    if (expanded) return;
+    masonryEl.classList.add('masonry--preview');
+    masonryEl.style.maxHeight = `${cut}px`;
   }
 
   moreBtn.addEventListener('click', () => {
     expanded = !expanded;
-    layoutMasonry();
+    applyPreview();
     // en repliant, on remonte en haut de la grille : sinon on se retrouve
     // propulsé dans le pied de page sans savoir où l'on est
     if (!expanded) portfolioEl.scrollIntoView({ block: 'start' });
@@ -313,8 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // on ne redessine que si le nombre de colonnes change réellement
+  let previewTick = false;
   window.addEventListener('resize', () => {
-    if (columnCount() !== currentCols) layoutMasonry();
+    if (columnCount() !== currentCols) { layoutMasonry(); return; }
+    if (previewTick) return;          // la largeur change la hauteur des
+    previewTick = true;               // cartes : la coupe doit suivre
+    requestAnimationFrame(() => { previewTick = false; applyPreview(); });
   }, { passive: true });
 
   /* ---------------- Project modal ---------------- */
