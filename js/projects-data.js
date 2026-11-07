@@ -377,7 +377,7 @@ const PROJECTS = [
   {
     id: "jcg",
     title: "JCG Créations",
-    subtitle: "Refonte de l’identitée visuelle",
+    subtitle: "Refonte de l’identité visuelle",
     category: "visuelles",
     categoryLabel: "Identités visuelles",
     cover: "assets/img/jcg-cover.jpg",
