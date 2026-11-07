@@ -74,7 +74,7 @@ const PROJECTS = [
       "assets/img/brand-vermeille-cover.jpg",
       "assets/img/brand-vermeille-detail-1.jpg"
     ],
-    description: "Création de l'identité visuelle et de plusieurs supports de communication liés à ma marque personnelle, si je créais un jour un studio de graphisme. Logo réalisé sur Illustrator dans un esprit enfantin et moelleux afin de refléter le côté chaleureux et dynamique de mon studio.",
+    description: "Création de l’identité visuelle et de plusieurs supports de communication liés à ma marque personnelle, dans l’éventualité où je créerais un jour mon propre studio de graphisme.\nLogo réalisé sur Illustrator, avec des formes arrondies et des courbes douces, afin de créer un univers chaleureux, accueillant et décontracté, qui reflète l’ambiance que je souhaite donner à mon studio.",
     tags: ["Logo", "Charte graphique", "Papeterie"]
   },
   {
@@ -93,7 +93,7 @@ const PROJECTS = [
       "assets/img/festival-v2-cover.jpg",
       "assets/img/festival-v2-detail-1.jpg"
     ],
-    description: "Création de l'identité visuelle d'un festival de cinéma espagnol, avec la contrainte de réaliser une typographie pour tout un alphabet, ainsi que différents supports de communication demandés pour l'événement : carton d'invitation, affiche, cartes de visite, page de site internet, logo et quelques goodies. J'ai réalisé deux versions aux identités visuelles proches mais reposant sur des concepts distincts. La première a été retenue parmi plusieurs propositions, puis déclinée sur l'ensemble des supports ; la seconde reprend la forme rectangulaire visible dans le viseur d'une caméra au moment du tournage.",
+    description: "Création de l’identité visuelle d’un festival de cinéma espagnol, avec la contrainte de réaliser une typographie pour tout un alphabet, ainsi que différents supports de communication demandés pour l’événement : carton d’invitation, affiche, cartes de visite, page de site internet, logo et quelques goodies.\n\nJ’ai réalisé deux versions aux identités visuelles proches, mais reposant sur des concepts distincts. La première a été retenue parmi plusieurs propositions, puis déclinée sur l’ensemble des supports ; la seconde reprend la forme rectangulaire visible dans le viseur d’une caméra au moment du tournage.",
     tags: ["Typographie sur-mesure", "Logo", "Affiche", "Goodies"]
   },
   {
@@ -163,7 +163,7 @@ const PROJECTS = [
       "assets/img/cohezia-detail-10.jpg",
       { video: "assets/video/cohezia-animation-logos.mp4", poster: "assets/img/cohezia-animation-logos-poster.jpg" }
     ],
-    description: "J'ai eu pour projet de concevoir les identités visuelles et la charte graphique de chacune des entités, en m'adaptant à l'identité existante de Richou Voyages, afin que l'on comprenne que ces marques font partie de l'entreprise. Ensuite, j'ai dû décliner différents supports en fonction des marques.",
+    description: "J’ai eu pour projet de concevoir les identités visuelles et les chartes graphiques de chacune des entités, en m’adaptant à l’identité existante de Richou Voyages, afin que l’on comprenne que ces marques font partie de l’entreprise. Ensuite, j’ai dû décliner différents supports en fonction des marques.",
     tags: ["Charte graphique", "Papeterie", "Déclinaisons de marque"]
   },
   {
@@ -180,7 +180,7 @@ const PROJECTS = [
       "assets/img/cardgame-detail-2.jpg",
       "assets/img/illustration-cartes.jpg"
     ],
-    description: "Réalisation d'un jeu de cartes pour les enfants avec différents mini-jeux dans un même jeu. Création d'un logo, d'une boîte de jeu, des visuels des cartes « caractères », des cartes « lettres » et des cartes « calques », ainsi que d'un support pour les règles du jeu.",
+    description: "Réalisation d’un jeu de cartes pour les enfants, regroupant plusieurs mini-jeux. Création d’un logo, d’une boîte de jeu, des visuels des cartes « caractères », des cartes « lettres » et des cartes « calques », ainsi que d’un support présentant les règles du jeu.",
     tags: ["Packaging", "Illustration", "Jeu"]
   },
   {
@@ -214,7 +214,7 @@ const PROJECTS = [
       "assets/img/pochette-cadeau-detail-3.jpg",
       "assets/img/pochette-cadeau-detail-4.jpg"
     ],
-    description: "J'ai eu pour objectif de réaliser une pochette cadeau que l'on puisse remplir en fonction du client et du voyage offert. La contrainte était de faire quelque chose de moderne, qui rappelle le voyage et dans un format assez important pour que l'on puisse y glisser les documents liés au voyage en format A5. J'ai donc réalisé deux versions différentes.",
+    description: "J’ai eu pour objectif de réaliser une pochette cadeau que l’on puisse remplir en fonction du client et du voyage offert. La contrainte était de faire quelque chose de moderne, qui rappelle le voyage, et dans un format assez important pour que l’on puisse y glisser les documents liés au voyage au format A5. J’ai donc réalisé deux versions différentes.",
     tags: ["Packaging", "Illustration"]
   },
   {
@@ -245,7 +245,7 @@ const PROJECTS = [
       "assets/img/orelsan-detail-1.png",
       "assets/img/orelsan-detail-2.png"
     ],
-    description: "Réalisation de l'identité graphique et de la campagne de communication de l'album Civilisation de l'artiste Orelsan. Ce projet était un projet fictif né d'une réinterprétation de la direction artistique de cet album à ma manière, inspiré de la technique de la risographie.",
+    description: "Réalisation de l’identité graphique et de la campagne de communication de l’album Civilisation de l’artiste Orelsan. Ce projet fictif est né d’une réinterprétation de la direction artistique de cet album à ma manière, inspirée de la technique de la risographie.",
     tags: ["Direction artistique", "Risographie"]
   },
   {
@@ -394,12 +394,12 @@ const PROJECTS = [
       "assets/img/jcg-detail-8.jpg",
       "assets/img/jcg-detail-9.jpg"
     ],
-    description: "Refonte de la charte graphique de l’entreprise JCG Créations, une entreprise de fabricant de van aménagés. Le but étant de revoir complètement le logo et le sytème graphique de l’entreprise pour qu’il soit plus moderne et qu’il représente mieux les valeurs de l’entreprise, à savoir le côté haut de gamme des produits, l’idée du road trip et de la liberté mais aussi l’autonomie. J’ai donc retravaillé le logo mais aussi les couleurs, les typographies, crée un motif et décliner plusieurs supports de communication avec cette nouvelle charte graphique (comptoir, panneau dibond, oriflamme, carte de visite, signature mail…)",
+    description: "Refonte de la charte graphique de l’entreprise JCG Créations, un fabricant de vans aménagés. Le but était de revoir complètement le logo et le système graphique de l’entreprise pour qu’ils soient plus modernes et qu’ils représentent mieux les valeurs de l’entreprise, à savoir le côté haut de gamme des produits, l’idée du road trip et de la liberté, mais aussi l’autonomie.\n\nJ’ai donc retravaillé le logo, mais aussi les couleurs et les typographies, créé un motif et décliné plusieurs supports de communication avec cette nouvelle charte graphique (comptoir, panneau Dibond, oriflamme, carte de visite, signature mail…).",
     tags: ["Refonte de logo", "Charte graphique", "Motif", "Supports"]
   },
   {
     id: "haricots",
-    title: "Début des haricots",
+    title: "Le début des haricots",
     subtitle: "Identité visuelle — restaurant végan",
     category: "visuelles",
     categoryLabel: "Identités visuelles",
@@ -436,7 +436,7 @@ const PROJECTS = [
       "assets/img/voyage-amerique-detail-5.jpg",
       "assets/img/voyage-amerique-detail-6.jpg"
     ],
-    description: "Ce projet est un projet personnel qui m’a tenu à coeur de mettre en place. Je suis partis en voyage pendant trois mois en Amérique latine avec ma soeur et avait donc pour une idée de nous réaliser une identité graphique à décliner ensuite sur des tee-shirts et des tickets à coller sur les différents lieux que l’on allait découvrir.",
+    description: "Ce projet personnel me tenait particulièrement à cœur. À l’occasion d’un voyage de trois mois en Amérique latine avec ma sœur, j’ai eu envie de créer notre propre identité graphique, que nous pourrions ensuite décliner sur différents supports : des tee-shirts et des stickers à coller dans les lieux que nous allions découvrir tout au long de notre aventure.",
     tags: ["Logo", "Illustration", "Textile", "Stickers"]
   },
   {
@@ -452,7 +452,7 @@ const PROJECTS = [
       "assets/img/brochure-thematique-detail-1.jpg",
       "assets/img/brochure-thematique-detail-2.jpg"
     ],
-    description: "Réalisation d’une brochure pour présenter les différents voyages thématiques de Richou Voyages, à savoir les carnavals, les marchés de Noel, les nouvel an, les voyages neiges… Mise en page réalisée sur Indesign à l’aide du logiciel Easycatalogue",
+    description: "Réalisation d’une brochure pour présenter les différents voyages thématiques de Richou Voyages, à savoir les carnavals, les marchés de Noël, les réveillons du Nouvel An, les voyages à la neige… Mise en page réalisée sur InDesign à l’aide du logiciel EasyCatalog.",
     tags: ["Mise en page", "InDesign", "EasyCatalog"]
   },
   // {
@@ -485,7 +485,7 @@ const PROJECTS = [
       "assets/img/split-detail-4.jpg",
       "assets/img/split-detail-5.jpg"
     ],
-    description: "Réalisation d’une brochure sur le film Split avec la contrainte de réaliser plusieurs illustrations et photomontage à l’aide de Photoshop et de réutiliser l’aspect graphique du film tout le long de la brochure. La plaquette contient différent contenu : synopsis, résumé, témoignages, illustrations.",
+    description: "Réalisation d’une brochure sur le film Split, avec la contrainte de réaliser plusieurs illustrations et photomontages à l’aide de Photoshop, tout en réutilisant l’aspect graphique du film tout au long de la brochure.\n\nLa plaquette contient différents contenus : synopsis, résumé, témoignages et illustrations.",
     tags: ["Photomontage", "Illustration", "Photoshop", "Mise en page"]
   },
   {
@@ -500,7 +500,7 @@ const PROJECTS = [
       "assets/img/flyer-bons-plans-cover.jpg",
       "assets/img/flyer-bons-plans-detail-1.jpg"
     ],
-    description: "Réalisation d’un flyer pour présenter à nos clients les différents bons plans proposer par Richou voyages et leur donner envie de passer par l’agence plutôt qu’une autre.",
+    description: "Réalisation d’un flyer pour présenter à nos clients les différents bons plans proposés par Richou Voyages et leur donner envie de passer par l’agence plutôt que par une autre.",
     tags: ["Flyer", "Mise en page"]
   },
   {
@@ -528,7 +528,7 @@ const PROJECTS = [
     gallery: [
       { video: "assets/video/animation-valise.mp4", poster: "assets/img/animation-valise-poster.jpg" }
     ],
-    description: "Réalisation d’une animation sur After Effects pour clarifier les différents équipements autorisés dans un bagage lors d’un voyage avec Richou voyages. Cela permet au client de savoir de manière ludique ce qu’ils ont ou non le droit d’emporter.",
+    description: "Réalisation d’une animation sur After Effects pour clarifier les différents équipements autorisés dans un bagage lors d’un voyage avec Richou Voyages. Cela permet aux clients de savoir, de manière ludique, ce qu’ils ont ou non le droit d’emporter.",
     tags: ["Motion design", "After Effects"]
   },
   {
@@ -546,7 +546,7 @@ const PROJECTS = [
       { video: "assets/video/alternance-prejuges.mp4", poster: "assets/img/alternance-prejuges-poster.jpg" },
       { video: "assets/video/alternance-3-avantages.mp4", poster: "assets/img/alternance-3-avantages-poster.jpg" }
     ],
-    description: "Réalisation d’une campagne d’alternance chaque nouvelle année durant mon poste chez Richou voyages. Le but était de trouver un nouveau concept chaque année pour donner envie aux futurs alternants de nous rejoindre. Par exemple sous forme de témoignages des alternants, de préjugés vs réalité ou encore « une journée type en alternance chez Richou Voyages » Avec la réalisation d’un logo et d’une animation spéciale pour cette campagne « Richou à besoin de vous » sur le logiciel After Effects « Transmettre » était également la campagne d’alternance d’une autre année que j’ai réalisée.",
+    description: "Réalisation d’une campagne d’alternance chaque nouvelle année durant mon poste chez Richou Voyages. Le but était de trouver un nouveau concept chaque année pour donner envie aux futurs alternants de nous rejoindre. Par exemple, sous forme de témoignages d’alternants, de préjugés vs réalité ou encore de « Une journée type en alternance chez Richou Voyages ».\n\nAvec la réalisation d’un logo et d’une animation spéciale pour cette campagne « Richou a besoin de vous », sur le logiciel After Effects.",
     tags: ["Tournage", "Montage", "After Effects", "Réseaux sociaux"]
   },
   {
