@@ -206,7 +206,7 @@ const PROJECTS = [
     category: "print",
     categoryLabel: "Print et Édition",
     cover: "assets/img/pochette-cadeau-cover.jpg",
-    coverRatio: 0.723,
+    coverRatio: 1.383,       // photo pivotée par l’EXIF : c’est le ratio affiché qui compte
     gallery: [
       "assets/img/pochette-cadeau-cover.jpg",
       "assets/img/pochette-cadeau-detail-1.jpg",

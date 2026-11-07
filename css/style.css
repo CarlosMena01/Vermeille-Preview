@@ -870,6 +870,8 @@ ul{ margin:0; padding:0; list-style:none; }
 .card__media img{
   width: 110%;
   display: block;
+  /* si le ratio réservé ne colle pas à la photo, on recadre au lieu d'étirer */
+  object-fit: cover;
   transition: transform .6s var(--ease);
 }
 .card:hover .card__media img{
